@@ -1,0 +1,8 @@
+References:
+-----------------
+Search page - https://www.junctionautopark.co.uk/used-cars-for-sale/
+
+To Do List:
+-----------------
+Brainstorm the page styles
+Made a basic front page

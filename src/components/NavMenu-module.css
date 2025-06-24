@@ -1,0 +1,29 @@
+Button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+Button::after{
+    content: '';
+    position: absolute;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    width: 0%;
+    background: white;
+    transform: translateX(-50%);
+    transition: width .2s;
+}
+
+Button:hover:after{
+    width: 80%;
+    background: lightgray;
+}
+
+Button.current:after{
+    width: 80%;
+    height: 3px;
+    background: white;
+}
