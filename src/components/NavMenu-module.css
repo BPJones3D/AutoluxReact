@@ -1,8 +1,17 @@
 Button{
     background: none;
     border: none;
-    cursor: pointer;
     position: relative;
+    color: white;
+}
+
+
+Button:disabled{
+    color: rgb(189, 189, 189);
+}
+
+Button:disabled:hover:after{
+    width: 0;
 }
 
 Button::after{
