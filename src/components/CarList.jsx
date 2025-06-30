@@ -1,5 +1,6 @@
 import React, { use, useState } from "react";
 import CarTile from "./CarTile";
+import './CarList-module.css';
 
 const fetchCars = fetch('https://localhost:44357/api/car').then(response => response.json());
 
@@ -56,14 +57,14 @@ function CarList()
     const [cars, setCars] = useState(carResult);
 
     return (
-        <>
+        <div className="forSale-container">
             <h2 className="text-white text-center pt-5 pb-2">For Sale</h2>
             <div className="container d-flex flex-wrap justify-content-center">
                 {cars.map(car => (
                     <CarTile key={car.id} car={car} />
                 ))}
             </div>
-        </>
+        </div>
     );
 }
 

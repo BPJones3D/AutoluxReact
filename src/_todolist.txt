@@ -8,12 +8,32 @@ Search page - https://www.junctionautopark.co.uk/used-cars-for-sale/
 
 To Do List:
 -----------------
-Make car name scale to one line
+Reformat p/m to 2dp
 
-Hoverable tiles
-    cursor on hover
-    backdrop glow on hover
-    whole tile outline on hover
-    light price to be green on hover
+Add filter panel with proper MQ
+Add search name filter
+Add sort-by
+    relevancy (disabled - add after others)
+    price (low-high)
+    price (high-low)
+    year (low-high)
+    year (high-low)
+    miles (low-high)
+    miles (high-low)
+    mpg (low-high)
+    mpg (high-low)
+
+Add:
+    transmission
+    fuel type
+    year
+    price
+    miles
+    mpg
+    tank cap
+    ev range
+    seats
+    doors
+
 
 
