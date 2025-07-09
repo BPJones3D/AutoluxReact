@@ -1,6 +1,6 @@
 import './Filters.css';
 
-function FilterSearchBar({ label}) {
+function FilterSearchBar({ label, onChange }) {
     return (
         <div className="filter-option-container">
             <label>{label}</label>          
@@ -8,6 +8,7 @@ function FilterSearchBar({ label}) {
                 type="text"
                 placeholder="Search by name..."
                 className="search-input"
+                onChange={e => onChange(e.target.value)}
             />
         </div>
     );

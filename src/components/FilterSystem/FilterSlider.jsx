@@ -2,7 +2,7 @@ import './Filters.css';
 import React, { useState } from 'react';
    
 
-function FilterSlider({ label, prefix = '', suffix = '' , min = 0, max = 100, step = 1 }) {
+function FilterSlider({ label, prefix = '', suffix = '' , min = 0, max = 100, step = 1, onChange}) {
     const [slider1Value, setSlider1Value] = useState(min);
     const [slider2Value, setSlider2Value] = useState(max);
 
@@ -25,6 +25,12 @@ function FilterSlider({ label, prefix = '', suffix = '' , min = 0, max = 100, st
     };
     // copilot used until here
 
+    const handleChange = (newMin, newMax) => {
+        setSlider1Value(newMin);
+        setSlider2Value(newMax);
+        onChange(newMin, newMax);
+    };
+
     return (
         <div className="filter-option-container">
             <label>{label}</label>          
@@ -37,7 +43,7 @@ function FilterSlider({ label, prefix = '', suffix = '' , min = 0, max = 100, st
                     value={slider1Value} 
                     id="slider-1" 
                     step={step}
-                    onChange={(e) => setSlider1Value(e.target.value)} 
+                    onChange={(e) => handleChange(Number(e.target.value), slider2Value)} 
                 />
                 <input 
                     type="range" 
@@ -46,7 +52,7 @@ function FilterSlider({ label, prefix = '', suffix = '' , min = 0, max = 100, st
                     value={slider2Value} 
                     id="slider-2" 
                     step={step}
-                    onChange={(e) => setSlider2Value(e.target.value)} 
+                    onChange={(e) => handleChange(slider1Value, Number(e.target.value))}
                 />
             </div>
             <div className="slider-values">

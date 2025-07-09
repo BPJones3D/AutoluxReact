@@ -4,63 +4,119 @@ import './CarList-module.css';
 
 const fetchCars = fetch('https://localhost:44357/api/car').then(response => response.json());
 
+function CarList({
+    searchValue,
+    yearMinValue, yearMaxValue,
+    priceMinValue, priceMaxValue,
+    milesMinValue, milesMaxValue,
+    mpgMinValue, mpgMaxValue,
+    tankCapacityMinValue, tankCapacityMaxValue,
+    evRangeMinValue, evRangeMaxValue,
+    seatsMinValue, seatsMaxValue,
+    doorsMinValue, doorsMaxValue,
+    fuelTypeValue = [],
+    transmissionValue = [],
+    brandValue = [],
 
-const tempCarArray = [
-    { 
-        id: 1, 
-        brand: 'Ford',
-        name: 'Focus ST', 
-        price: 18999,
-        year: 2020,
-        miles: 73827,
-        transmission: 'Manual',
-        fuel: 'Petrol',
-        tank: 5.2,
-        mpg: 40,
-        seats: 5,
-        doors: 5,
-    },
-    {
-        id: 2,
-        brand: 'BMW',
-        name: 'M3',
-        year: 2021,
-        price: 69999,
-        miles: 12546,
-        transmission: 'Automatic',
-        fuel: 'Diesel',
-        tank: 5.0,
-        mpg: 30,
-        seats: 4,
-        doors: 2,
-    },
-    {
-        id: 3,
-        brand: 'Audi',
-        name: 'A4',
-        year: 2020,
-        price: 39999,
-        miles: 15540,
-        transmission: 'Automatic',
-        fuel: 'Petrol',
-        tank: 5.0,
-        mpg: 35,
-        seats: 5,
-        doors: 4,
-    }
-];
-
-function CarList()
+    arr = [1, 3, 4, 2, 99, 56, 12],
+    arrSorted = arr.sort()
+})
 {
 
     const carResult = use(fetchCars);
     const [cars, setCars] = useState(carResult);
+    
+    if (yearMinValue > yearMaxValue){
+        const oldMin = yearMinValue; const oldMax = yearMaxValue
+        yearMinValue = oldMax; yearMaxValue = oldMin
+    }
+    if (priceMinValue > priceMaxValue){
+        const oldMin = priceMinValue; const oldMax = priceMaxValue
+        priceMinValue = oldMax; priceMaxValue = oldMin
+    }
+    if (milesMinValue > milesMaxValue){
+        const oldMin = milesMinValue; const oldMax = milesMaxValue
+        milesMinValue = oldMax; milesMaxValue = oldMin
+    }
+    if (mpgMinValue > mpgMaxValue){
+        const oldMin = mpgMinValue; const oldMax = mpgMaxValue
+        mpgMinValue = oldMax; mpgMaxValue = oldMin
+    }    
+    if (tankCapacityMinValue > tankCapacityMaxValue){
+        const oldMin = tankCapacityMinValue; const oldMax = tankCapacityMaxValue
+        tankCapacityMinValue = oldMax; tankCapacityMaxValue = oldMin
+    }
+    if (evRangeMinValue > evRangeMaxValue){
+        const oldMin = evRangeMinValue; const oldMax = evRangeMaxValue
+        evRangeMinValue = oldMax; evRangeMaxValue = oldMin
+    }  
+    if (seatsMinValue > seatsMaxValue){
+        const oldMin = seatsMinValue; const oldMax = seatsMaxValue
+        seatsMinValue = oldMax; seatsMaxValue = oldMin
+    }
+    if (doorsMinValue > doorsMaxValue){
+        const oldMin = doorsMinValue; const oldMax = doorsMaxValue
+        doorsMinValue = oldMax; doorsMaxValue = oldMin
+    } 
+
+    const filteredCars = cars.filter(
+        (car) => 
+            (searchValue.length === 0 || (car.brand + " " + car.name).toLowerCase().includes(searchValue.toLowerCase())) &&
+            car.year >= yearMinValue && car.year <= yearMaxValue &&
+            car.price >= priceMinValue && car.price <= priceMaxValue &&
+            car.miles >= milesMinValue && car.miles <= milesMaxValue &&
+            car.milesPerGallon >= mpgMinValue && car.milesPerGallon <= mpgMaxValue &&
+            (car.transmission === "EV" 
+                ? car.tankCapacity >= evRangeMinValue && car.tankCapacity <= evRangeMaxValue
+                : car.tankCapacity >= tankCapacityMinValue && car.tankCapacity <= tankCapacityMaxValue)&&
+            car.seatCount >= seatsMinValue && car.seatCount <= seatsMaxValue &&
+            car.doorCount >= doorsMinValue && car.doorCount <= doorsMaxValue &&
+            (fuelTypeValue.length === 0 || fuelTypeValue.some(option => option.type === car.fuelType))&&
+            (transmissionValue.length === 0 || transmissionValue.some(option => option.type === car.transmission))&&
+            (brandValue.length === 0 || brandValue.some(option => option.type === car.brand))
+    );
 
     return (
         <div className="forSale-container">
-            <h2 className="text-white text-center pt-5 pb-2">For Sale</h2>
-            <div className="container d-flex flex-wrap justify-content-center">
-                {cars.map(car => (
+            <div className="m-5">
+                    {/* dev visuals - shows filter stats
+                <p className="text-white">Year: {yearMinValue} {yearMaxValue}</p>
+                <p className="text-white">Price: {priceMinValue} {priceMaxValue}</p>
+                <p className="text-white">Miles: {milesMinValue} {milesMaxValue}</p>
+                <p className="text-white">MPG: {mpgMinValue} {mpgMaxValue}</p>
+                <p className="text-white">Tank Cap: {tankCapacityMinValue} {tankCapacityMaxValue}</p>
+                <p className="text-white">Ev Range: {evRangeMinValue} {evRangeMaxValue}</p>
+                <p className="text-white">Seats: {seatsMinValue} {seatsMaxValue}</p>
+                <p className="text-white">Doors: {doorsMinValue} {doorsMaxValue}</p>
+
+                <br></br>
+
+                <p className="text-white">Transmission Type:</p>
+                {transmissionValue.map((option) => (
+                    <p className="text-white"> -{option.type} </p>
+                ))}
+                <br></br>
+                <p className="text-white">Fuel Type:</p>
+                {fuelTypeValue.map((option) => (
+                    <p className="text-white"> -{option.type} </p>
+                ))}
+                <br></br>
+                <p className="text-white">Brand:</p>
+                {brandValue.map((option) => (
+                    <p className="text-white"> -{option.type} </p>
+                ))} 
+                    
+                <p className="text-white">Price: {priceMinValue} {priceMaxValue}</p>
+                <p className="text-white">Result: {searchValue}</p>*/} 
+
+            </div>      
+            <div className="text-white text-center pt-5 pb-2">
+                <h2 className="pb-0 mb-0">For Sale</h2>
+                <i><p className="text-info">{filteredCars.length} cars found</p></i>
+            </div>
+            
+            <div className="container d-flex flex-wrap justify-content-center test1">
+                {filteredCars.map(car => (
                     <CarTile key={car.id} car={car} />
                 ))}
             </div>
