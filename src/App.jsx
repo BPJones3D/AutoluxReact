@@ -6,6 +6,8 @@ import NavMenu from './components/NavMenu';
 import { useState } from 'react';
 
 function App() {
+  const [sortByValue, setSortByValue] = useState("Relevancy");
+  const [orderValue, setOrderValue] = useState(true);
   const [searchValue, setSearchNameValue] = useState("");
   const [yearMinValue, setYearMinValue] = useState(0);
   const [yearMaxValue, setYearMaxValue] = useState(1000000);
@@ -27,6 +29,8 @@ function App() {
   const [transmissionValue, setTransmissionValue] = useState([])
   const [brandValue, setBrandValue] = useState([])
 
+  const sortByChange              = (newSortBy)      => {setSortByValue(newSortBy)};
+  const orderChange               = (newOrder)       => {setOrderValue(newOrder)};
   const searchNameChange          = (newSearchName)  => {setSearchNameValue(newSearchName)};
   const yearHandleChange          = (newMin, newMax) => {setYearMinValue(newMin);setYearMaxValue(newMax);};
   const priceHandleChange         = (newMin, newMax) => {setPriceMinValue(newMin);setPriceMaxValue(newMax);};
@@ -49,6 +53,8 @@ function App() {
       </div>
       <div className="main-content">
         <FilterMenu
+          sortByValue={sortByValue}
+          orderValue={orderValue}
           searchValue={searchValue}
           yearMinValue={yearMinValue}
           yearMaxValue={yearMaxValue}
@@ -69,6 +75,8 @@ function App() {
           fuelTypeValue={fuelTypeValue}
           transmissionValue={transmissionValue}
           brandValue={brandValue}
+          onOrderChange={orderChange}
+          onSortByChange={sortByChange}
           onSearchNameChange={searchNameChange}
           onYearChange={yearHandleChange}
           onPriceChange={priceHandleChange}
@@ -83,6 +91,8 @@ function App() {
           onBrandChange={brandChange}
         />
         <CarList
+          sortByValue={sortByValue}
+          orderValue={orderValue}
           searchValue={searchValue}
           yearMinValue={yearMinValue}
           yearMaxValue={yearMaxValue}

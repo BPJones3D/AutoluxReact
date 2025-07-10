@@ -6,6 +6,8 @@ import FilterSlider from './FilterSlider';
 import {useState} from 'react';
 
 function FilterMenu({
+  onSortByChange,
+  onOrderChange,
   onSearchNameChange,
   onYearChange, 
   onPriceChange, 
@@ -20,6 +22,8 @@ function FilterMenu({
   onBrandChange
 }){
 
+  const [sortByValue, setSortByValue] = useState("Relevancy")
+  const [orderValue, setOrderValue] = useState(true)
   const [searchNameValue, setSearchNameValue] = useState("")
   const [yearMinValue, setYearMinValue] = useState(0);
   const [yearMaxValue, setYearMaxValue] = useState(1000000);
@@ -41,6 +45,8 @@ function FilterMenu({
   const [transmissionValue, setTransmissionValue] = useState()
   const [brandValue, setBrandValue] = useState()
   
+  const sortByChange              = (newSortBy)         => {setSortByValue(newSortBy); onSortByChange(newSortBy)};
+  const orderChange               = (newOrder)           => {setOrderValue(newOrder); onOrderChange(newOrder)};
   const searchNameChange          = (newSearchName)     => {setSearchNameValue(newSearchName); onSearchNameChange(newSearchName)};
   const yearHandleChange          = (newMin, newMax)    => {setYearMinValue(newMin);setYearMaxValue(newMax);onYearChange(newMin, newMax);};
   const priceHandleChange         = (newMin, newMax)    => {setPriceMinValue(newMin);setPriceMaxValue(newMax);onPriceChange(newMin, newMax);};
@@ -61,21 +67,18 @@ function FilterMenu({
       {/* add Sort by filter */}
       {/* add reset filter button */}
       {/* get all min/max's from database */}
-
       
+      <div className="double-filter-container">
+        <FilterDropDown label="SORT BY      ■■■■■■ IN PROGRESS ■■■■■■" order={true} onChange={sortByChange} onOrderChange={orderChange} options={[
+          { value: 'Relevancy', label: 'Relevancy' },
+          { value: 'Price', label: 'Price' },
+          { value: 'Year', label: 'Year' },
+          { value: 'Miles', label: 'Miles' },
+          { value: 'MPG', label: 'MPG' },
+        ]}/>
+        
+      </div>
 
-      {/* <FilterDropDown label="SORT BY" options={[
-          { value: 'option1', label: 'Relevancy' },
-          { value: 'option2', label: 'Price: Low to High' },
-          { value: 'option3', label: 'Price: High to Low' },
-          { value: 'option4', label: 'Year: Low to High' },
-          { value: 'option5', label: 'Year: High to Low' },
-          { value: 'option6', label: 'Miles: Low to High' },
-          { value: 'option7', label: 'Miles: High to Low' },
-          { value: 'option8', label: 'MPG: Low to High' },
-          { value: 'option9', label: 'MPG: High to Low' },
-      ]}/>
-*/}
       <FilterSearchBar label="SEARCH BY NAME" onChange={searchNameChange}/>
 
       <div className="double-filter-container">

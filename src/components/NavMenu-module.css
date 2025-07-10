@@ -1,4 +1,4 @@
-Button{
+.navBtn Button{
     background: none;
     border: none;
     position: relative;
@@ -6,15 +6,15 @@ Button{
 }
 
 
-Button:disabled{
+.navBtn Button:disabled{
     color: rgb(189, 189, 189);
 }
 
-Button:disabled:hover:after{
+.navBtn Button:disabled:hover:after{
     width: 0;
 }
 
-Button::after{
+.navBtn Button::after{
     content: '';
     position: absolute;
     height: 2px;
@@ -26,12 +26,12 @@ Button::after{
     transition: width .2s;
 }
 
-Button:hover:after{
+.navBtn Button:hover:after{
     width: 80%;
     background: lightgray;
 }
 
-Button.current:after{
+.navBtn Button.current:after{
     width: 80%;
     height: 3px;
     background: white;

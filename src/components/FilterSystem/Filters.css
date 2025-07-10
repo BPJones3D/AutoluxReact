@@ -96,3 +96,31 @@ input[type="range"]:active::-webkit-slider-thumb {
 .checkbox-container label{
     padding: 0 0 0 8px;
 }
+
+.orderBtn{
+    background-color: #E4E5E6;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 0px 8px;
+    color: #495057;
+    margin: 3px 0 4px 0;
+    height: 26px;
+    width: 26px;
+
+ }
+
+ .orderBtn img{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 -6px;
+    filter: brightness(0) saturate(100%) invert(32%) sepia(6%) saturate(1106%) hue-rotate(169deg) brightness(93%) contrast(87%);
+ }
+
+ .dropDownContainer{
+    display: flex;
+    gap: 10px;
+ }
+

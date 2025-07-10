@@ -5,6 +5,8 @@ import './CarList-module.css';
 const fetchCars = fetch('https://localhost:44357/api/car').then(response => response.json());
 
 function CarList({
+    sortByValue,
+    orderValue,
     searchValue,
     yearMinValue, yearMaxValue,
     priceMinValue, priceMaxValue,
@@ -17,9 +19,6 @@ function CarList({
     fuelTypeValue = [],
     transmissionValue = [],
     brandValue = [],
-
-    arr = [1, 3, 4, 2, 99, 56, 12],
-    arrSorted = arr.sort()
 })
 {
 
@@ -76,45 +75,26 @@ function CarList({
             (brandValue.length === 0 || brandValue.some(option => option.type === car.brand))
     );
 
+    const sortedCars = filteredCars.sort()
+
     return (
-        <div className="forSale-container">
-            <div className="m-5">
-                    {/* dev visuals - shows filter stats
-                <p className="text-white">Year: {yearMinValue} {yearMaxValue}</p>
-                <p className="text-white">Price: {priceMinValue} {priceMaxValue}</p>
-                <p className="text-white">Miles: {milesMinValue} {milesMaxValue}</p>
-                <p className="text-white">MPG: {mpgMinValue} {mpgMaxValue}</p>
-                <p className="text-white">Tank Cap: {tankCapacityMinValue} {tankCapacityMaxValue}</p>
-                <p className="text-white">Ev Range: {evRangeMinValue} {evRangeMaxValue}</p>
-                <p className="text-white">Seats: {seatsMinValue} {seatsMaxValue}</p>
-                <p className="text-white">Doors: {doorsMinValue} {doorsMaxValue}</p>
-
-                <br></br>
-
-                <p className="text-white">Transmission Type:</p>
-                {transmissionValue.map((option) => (
-                    <p className="text-white"> -{option.type} </p>
-                ))}
-                <br></br>
-                <p className="text-white">Fuel Type:</p>
-                {fuelTypeValue.map((option) => (
-                    <p className="text-white"> -{option.type} </p>
-                ))}
-                <br></br>
-                <p className="text-white">Brand:</p>
-                {brandValue.map((option) => (
-                    <p className="text-white"> -{option.type} </p>
-                ))} 
-                    
-                <p className="text-white">Price: {priceMinValue} {priceMaxValue}</p>
-                <p className="text-white">Result: {searchValue}</p>*/} 
-
-            </div>      
+        <div className="forSale-container">    
             <div className="text-white text-center pt-5 pb-2">
                 <h2 className="pb-0 mb-0">For Sale</h2>
                 <i><p className="text-info">{filteredCars.length} cars found</p></i>
             </div>
-            
+
+            {sortByValue === "Relevancy" && console.log("sort by relevancy")}
+            {sortByValue === "Price" && console.log("sort by price")}
+            {sortByValue === "Year" && console.log("sort by year")}
+            {sortByValue === "Miles" && console.log("sort by mile")}
+            {sortByValue === "MPG" && console.log("sort by mpg")}
+
+            {console.log(sortedCars)}
+
+            {orderValue === true && console.log("in ascending order")}
+            {orderValue === false && console.log("in descending order")}
+
             <div className="container d-flex flex-wrap justify-content-center test1">
                 {filteredCars.map(car => (
                     <CarTile key={car.id} car={car} />
