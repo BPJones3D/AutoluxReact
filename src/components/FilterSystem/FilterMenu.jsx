@@ -69,12 +69,14 @@ function FilterMenu({
       {/* get all min/max's from database */}
       
       <div className="double-filter-container">
-        <FilterDropDown label="SORT BY      ■■■■■■ IN PROGRESS ■■■■■■" order={true} onChange={sortByChange} onOrderChange={orderChange} options={[
+        <FilterDropDown label="SORT BY" order={true} onChange={sortByChange} onOrderChange={orderChange} options={[
           { value: 'Relevancy', label: 'Relevancy' },
           { value: 'Price', label: 'Price' },
           { value: 'Year', label: 'Year' },
           { value: 'Miles', label: 'Miles' },
           { value: 'MPG', label: 'MPG' },
+          { value: 'Brand', label: 'Brand'},
+          { value: 'Doors', label: 'Doors'}
         ]}/>
         
       </div>

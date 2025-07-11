@@ -75,7 +75,45 @@ function CarList({
             (brandValue.length === 0 || brandValue.some(option => option.type === car.brand))
     );
 
-    const sortedCars = filteredCars.sort()
+const sortedCars = filteredCars.slice().sort((a, b) => {
+    let field;
+    switch (sortByValue) {
+        case "Relevancy":
+            field = "id";
+            break;
+        case "Price":
+            field = "price";
+            break;
+        case "Year":
+            field = "year";
+            break;
+        case "Miles":
+            field = "miles";
+            break;
+        case "MPG":
+            field = "milesPerGallon";
+            break;
+        case "Brand":
+            field = "brand";
+            break;
+        case "Doors":
+            field = "doorCount";
+            break;
+        default:
+            field = "id"; // sort by name in default case
+            break;
+    }
+
+    if (typeof a[field] === "string") {
+        return orderValue
+            ? a[field].localeCompare(b[field])
+            : b[field].localeCompare(a[field]);
+    } else {
+        return orderValue
+            ? b[field] - a[field]
+            : a[field] - b[field];
+    }
+});
 
     return (
         <div className="forSale-container">    
@@ -83,20 +121,8 @@ function CarList({
                 <h2 className="pb-0 mb-0">For Sale</h2>
                 <i><p className="text-info">{filteredCars.length} cars found</p></i>
             </div>
-
-            {sortByValue === "Relevancy" && console.log("sort by relevancy")}
-            {sortByValue === "Price" && console.log("sort by price")}
-            {sortByValue === "Year" && console.log("sort by year")}
-            {sortByValue === "Miles" && console.log("sort by mile")}
-            {sortByValue === "MPG" && console.log("sort by mpg")}
-
-            {console.log(sortedCars)}
-
-            {orderValue === true && console.log("in ascending order")}
-            {orderValue === false && console.log("in descending order")}
-
             <div className="container d-flex flex-wrap justify-content-center test1">
-                {filteredCars.map(car => (
+                {sortedCars.map(car => (
                     <CarTile key={car.id} car={car} />
                 ))}
             </div>
