@@ -4,9 +4,9 @@ function removeSpace(str) {
   return str.replace(/\s+/g, '');
 }
 
-function CarTile({ car }) {
+function CarTile({ car, onTileClicked }) {
   return (
-    <div className="car-tile">
+    <div className="car-tile" onClick={() => onTileClicked((car))}>
         {/* car image and name */}
         <img src={`./carImages/${removeSpace(car.brand)}${removeSpace(car.name)}${car.year}_3x2_720x480.png`} alt={`${car.brand} ${car.name}`} />
         <h2 className="car-name fw-light">{car.brand} {car.name}</h2>
@@ -79,7 +79,7 @@ function CarTile({ car }) {
             <h3 className="fullPrice p-0 m-0 fw-bold">£{car.price.toLocaleString()}</h3>
             <div className="montlyPriceContainer">
               <h3 className="monthlyPrice fs-6">or</h3>
-              <h3 className="monthlyPrice fs-4 fw-bold">£{(car.price / 50).toLocaleString()}</h3>
+              <h3 className="monthlyPrice fs-4 fw-bold">£{Math.ceil((car.price / 52)).toLocaleString()}</h3>
               <h3 className="monthlyPrice fs-6">p/m</h3>
             </div>
         </div>

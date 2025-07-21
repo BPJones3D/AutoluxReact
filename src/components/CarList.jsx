@@ -19,6 +19,7 @@ function CarList({
     fuelTypeValue = [],
     transmissionValue = [],
     brandValue = [],
+    onCarClicked
 })
 {
 
@@ -123,7 +124,7 @@ const sortedCars = filteredCars.slice().sort((a, b) => {
             </div>
             <div className="container d-flex flex-wrap justify-content-center test1">
                 {sortedCars.map(car => (
-                    <CarTile key={car.id} car={car} />
+                    <CarTile key={car.id} car={car} onTileClicked={onCarClicked}/>
                 ))}
             </div>
         </div>

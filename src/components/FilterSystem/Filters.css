@@ -80,6 +80,10 @@ input[type="range"]:active::-webkit-slider-thumb {
     border: 3px solid #383532; 
 }
 
+input[type="checkbox"]{
+    accent-color: #383532;
+}
+
 .checkbox-container{
     display: flex;
     flex-direction: column;

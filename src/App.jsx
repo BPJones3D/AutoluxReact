@@ -3,6 +3,7 @@ import Banner from './components/Banner'
 import CarList from './components/CarList';
 import FilterMenu from './components/FilterSystem/FilterMenu';
 import NavMenu from './components/NavMenu';
+import CarDetailsPage from './components/CarDetailsPage';
 import { useState } from 'react';
 
 function App() {
@@ -44,79 +45,167 @@ function App() {
   const transmissionChange        = (newTransmission)=> {setTransmissionValue(newTransmission)};
   const brandChange               = (newBrand)       => {setBrandValue(newBrand)};
 
+  const currentNavLocation = 'test'
+  const [pageValue, setPageValue] = useState(currentNavLocation)
+  const pageChange                = (newPage)        => {setPageValue(newPage); setCarClicked()}
 
-  return (
-    <>
-      <div className="header">
-        <Banner/>
-        <NavMenu/>
-      </div>
-      <div className="main-content">
-        <FilterMenu
-          sortByValue={sortByValue}
-          orderValue={orderValue}
-          searchValue={searchValue}
-          yearMinValue={yearMinValue}
-          yearMaxValue={yearMaxValue}
-          priceMinValue={priceMinValue}
-          priceMaxValue={priceMaxValue}
-          milesMinValue={milesMinValue}
-          milesMaxValue={milesMaxValue}
-          mpgMinValue={mpgMinValue}
-          mpgMaxValue={mpgMaxValue}
-          tankCapacityMinValue={tankCapacityMinValue}
-          tankCapacityMaxValue={tankCapacityMaxValue}
-          evRangeMinValue={evRangeMinValue}
-          evRangeMaxValue={evRangeMaxValue}
-          seatsMinValue={seatsMinValue}
-          seatsMaxValue={seatsMaxValue}
-          doorsMinValue={doorsMinValue}
-          doorsMaxValue={doorsMaxValue}
-          fuelTypeValue={fuelTypeValue}
-          transmissionValue={transmissionValue}
-          brandValue={brandValue}
-          onOrderChange={orderChange}
-          onSortByChange={sortByChange}
-          onSearchNameChange={searchNameChange}
-          onYearChange={yearHandleChange}
-          onPriceChange={priceHandleChange}
-          onMilesChange={milesHandleChange}
-          onMpgChange={mpgHandleChange}
-          onTankCapacityChange={tankCapacityHandleChange}
-          onEvRangeChange={evRangeHandleChange}
-          onSeatsChange={seatsHandleChange}
-          onDoorsChange={doorsHandleChange}
-          onFuelTypeChange={fuelTypeChange}
-          onTransmissionChange={transmissionChange}
-          onBrandChange={brandChange}
-        />
-        <CarList
-          sortByValue={sortByValue}
-          orderValue={orderValue}
-          searchValue={searchValue}
-          yearMinValue={yearMinValue}
-          yearMaxValue={yearMaxValue}
-          priceMinValue={priceMinValue}
-          priceMaxValue={priceMaxValue}
-          milesMinValue={milesMinValue}
-          milesMaxValue={milesMaxValue}
-          mpgMinValue={mpgMinValue}
-          mpgMaxValue={mpgMaxValue}
-          tankCapacityMinValue={tankCapacityMinValue}
-          tankCapacityMaxValue={tankCapacityMaxValue}
-          evRangeMinValue={evRangeMinValue}
-          evRangeMaxValue={evRangeMaxValue}
-          seatsMinValue={seatsMinValue}
-          seatsMaxValue={seatsMaxValue}
-          doorsMinValue={doorsMinValue}
-          doorsMaxValue={doorsMaxValue}
-          fuelTypeValue={fuelTypeValue}
-          transmissionValue={transmissionValue}
-          brandValue={brandValue}
-        />
-      </div>
-    </>
-  );
+  const [carClicked, setCarClicked] = useState()
+  const carClickChange = (newCarClicked) => {setCarClicked(newCarClicked)}
+  let carShowing = false
+
+  if(carClicked && pageValue !== "car"){
+    setPageValue("car")
+  }
+
+
+const cartest = {  // DELETE THIS LATER
+    "id": "a795c786-f893-450d-1da4-08ddb188451b",
+    "brand": "Ford",
+    "name": "Focus ST",
+    "year": 2020,
+    "price": 34857,
+    "miles": 34827,
+    "transmission": "Manual",
+    "fuelType": "Petrol",
+    "tankCapacity": 52,
+    "milesPerGallon": 35.3,
+    "seatCount": 5,
+    "doorCount": 5,
+    "colour": "Red",
+    "description": ""
+}//---------------
+  
+
+  switch(pageValue) {
+    case 'cars':
+      return (
+      <>
+        <div className="header">
+          <Banner/>
+          <NavMenu
+            onChange={pageChange}
+            onSetPage={pageValue}
+          />
+        </div>
+        <div className="main-content">
+          <FilterMenu
+            sortByValue={sortByValue}
+            orderValue={orderValue}
+            searchValue={searchValue}
+            yearMinValue={yearMinValue}
+            yearMaxValue={yearMaxValue}
+            priceMinValue={priceMinValue}
+            priceMaxValue={priceMaxValue}
+            milesMinValue={milesMinValue}
+            milesMaxValue={milesMaxValue}
+            mpgMinValue={mpgMinValue}
+            mpgMaxValue={mpgMaxValue}
+            tankCapacityMinValue={tankCapacityMinValue}
+            tankCapacityMaxValue={tankCapacityMaxValue}
+            evRangeMinValue={evRangeMinValue}
+            evRangeMaxValue={evRangeMaxValue}
+            seatsMinValue={seatsMinValue}
+            seatsMaxValue={seatsMaxValue}
+            doorsMinValue={doorsMinValue}
+            doorsMaxValue={doorsMaxValue}
+            fuelTypeValue={fuelTypeValue}
+            transmissionValue={transmissionValue}
+            brandValue={brandValue}
+            onOrderChange={orderChange}
+            onSortByChange={sortByChange}
+            onSearchNameChange={searchNameChange}
+            onYearChange={yearHandleChange}
+            onPriceChange={priceHandleChange}
+            onMilesChange={milesHandleChange}
+            onMpgChange={mpgHandleChange}
+            onTankCapacityChange={tankCapacityHandleChange}
+            onEvRangeChange={evRangeHandleChange}
+            onSeatsChange={seatsHandleChange}
+            onDoorsChange={doorsHandleChange}
+            onFuelTypeChange={fuelTypeChange}
+            onTransmissionChange={transmissionChange}
+            onBrandChange={brandChange}
+          />
+          <CarList
+            sortByValue={sortByValue}
+            orderValue={orderValue}
+            searchValue={searchValue}
+            yearMinValue={yearMinValue}
+            yearMaxValue={yearMaxValue}
+            priceMinValue={priceMinValue}
+            priceMaxValue={priceMaxValue}
+            milesMinValue={milesMinValue}
+            milesMaxValue={milesMaxValue}
+            mpgMinValue={mpgMinValue}
+            mpgMaxValue={mpgMaxValue}
+            tankCapacityMinValue={tankCapacityMinValue}
+            tankCapacityMaxValue={tankCapacityMaxValue}
+            evRangeMinValue={evRangeMinValue}
+            evRangeMaxValue={evRangeMaxValue}
+            seatsMinValue={seatsMinValue}
+            seatsMaxValue={seatsMaxValue}
+            doorsMinValue={doorsMinValue}
+            doorsMaxValue={doorsMaxValue}
+            fuelTypeValue={fuelTypeValue}
+            transmissionValue={transmissionValue}
+            brandValue={brandValue}
+            onCarClicked={carClickChange}
+          />
+        </div>
+      </>);
+    
+    case 'car':
+      return(
+        <>
+          <div className="header">
+            <Banner/>
+            <NavMenu 
+              onChange={pageChange}
+              onSetPage={pageValue}
+            />
+          </div>
+          <CarDetailsPage 
+            OnReturn={() => {setCarClicked(); setPageValue("cars")}}
+            car={carClicked}
+          />
+        </>
+      );
+
+    case 'test':
+      return(
+        <>
+          <div className="header">
+            <Banner/>
+            <NavMenu 
+              onChange={pageChange}
+              onSetPage={pageValue}
+            />
+          </div>
+          <CarDetailsPage 
+            OnReturn={() => {setCarClicked(); setPageValue("cars")}}
+            car={cartest}
+          />
+        </>
+      );
+
+        
+    default:
+      return(
+        <>
+        <div className="header">
+          <Banner/>
+          <NavMenu 
+            onChange={pageChange}
+            onSetPage={pageValue}
+          />
+        </div>
+        <div className="main-content text-center d-block pt-5">
+          <p className="text-white pt-5">Sorry, the {pageValue} page is under construction.</p>
+          <h1 className="text-white pb-5">Come Back Later!</h1>
+        </div>
+        </>
+      );
+  }
 }
 
 export default App;

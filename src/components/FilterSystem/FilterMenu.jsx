@@ -98,7 +98,7 @@ function FilterMenu({
         />
       </div>
       
-      <FilterSlider label="YEAR" prefix="" suffix="" min={1980} max={2025} step={1} onChange={yearHandleChange}/>
+      <FilterSlider label="YEAR" prefix="" suffix="" min={2010} max={2025} step={1} onChange={yearHandleChange}/>
       <FilterSlider label="PRICE" prefix="£" suffix="" min={0} max={100000} step={1000} onChange={priceHandleChange}/>
       <FilterSlider label="MILES" prefix="" suffix=" Miles" min={0} max={120000} step={1000} onChange={milesHandleChange}/>
       <FilterSlider label="MPG" prefix="" suffix=" MPG" min={10} max={80} step={1} onChange={mpgHandleChange}/>

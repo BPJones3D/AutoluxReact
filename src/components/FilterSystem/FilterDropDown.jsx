@@ -10,12 +10,16 @@ function FilterDropDown({ label , order, options = [], onChange, onOrderChange})
         <div className="filter-option-container">
             <label>{label}</label>          
             <div className="dropDownContainer">
-                <select className="sort-by-dropdown" onChange={e => onChange(e.target.value)}>
+                <select 
+                    className="sort-by-dropdown" 
+                    onChange={e => onChange(e.target.value)}>
+
                 {options.map((option) => (
                     <option key={option.value} value={option.value}>
                         {option.label}
                     </option>
                 ))}
+                
                 </select>
                 {order === true ? <FilterOrder onChange={orderChange}/> : <></>}
             </div>
