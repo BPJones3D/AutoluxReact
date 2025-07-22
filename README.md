@@ -29,6 +29,9 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
 # Gallery
 ![car list default](https://i.imgur.com/9A74oEC.png)
 ![car list with filtering](https://i.imgur.com/XHB7Cy4.png)
+![car details 1](https://i.imgur.com/tqIq3ZM.png)
+![car details 2](https://i.imgur.com/Qa2ZJyl.png)
+![car details collapsed](https://i.imgur.com/WpNP2qn.png)
 
 # Database example
 | Id            | Brand         | Name  | Year | Price | Colour | Description | DoorCount | FuelType | Miles | MilesPerGallon | SeatCount | TankCapacity | Transmission |

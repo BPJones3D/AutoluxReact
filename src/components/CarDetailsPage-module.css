@@ -5,6 +5,7 @@
     padding-bottom: 100px;
 }
 
+
 .CarDetails-panel{
     background-color: #393E42;
     z-index: 1;
@@ -14,13 +15,15 @@
 }
 
 .content{
-    padding: 14px 40px 20px 40px;
+    padding: 14px 40px 40px 40px;
 }
 
 button{
     background: none;
     border: none;
 }
+
+/* featured image */
 
 .return-to-results, .gallery-btn{
     display: flex;
@@ -87,6 +90,9 @@ button{
     width: 18px;
     top: 4px;
 }
+
+
+/* important details panel */
 
 .important-details-panel{
     background-color: #212529;
@@ -180,7 +186,84 @@ button{
 }
 
 
+
+/* description section */
+
+.description-section{
+    margin: 2em 0 0 0;
+}
+
+.details-collapse-btn{
+    display: flex;
+    gap: 0px;
+    color: white;
+    height: 32px;
+    width: fit-content;
+}
+
+.details-collapse-btn img
+{
+    position: relative;
+    height: 32px;
+    width: 32px;
+    top: 3px;
+}
+
+.description-text{
+    color: white;
+    margin: 15px 30px;
+}
+
+.page-divider{
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 25px 20px;
+}
+
+/* technical summary */
+
+.technical-table{
+    display: flex;
+    gap: 20px;
+    padding: 20px 30px;
+}
+.tech-column{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px; 
+}
+.tech-tile{
+    background-color: #212529;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+}
+
+.tech-tile-title{
+    width: 100%;
+    margin: 0;
+    padding-left: 8px;
+}
+.tech-tile-value{
+    background-color: #4D586A;
+    width: 100%;
+    text-align: end;
+    text-shadow: rgba(0, 0, 0, 0.3) 2px 2px 1px;
+    margin: 2px;
+    padding-right: 8px;
+
+}
+
+
 @media (max-width: 767px){
+    .technical-table{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 20px;
+    }
+
     .CarDetails-panel{
         width: 100% !important;
     }

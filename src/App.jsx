@@ -45,16 +45,16 @@ function App() {
   const transmissionChange        = (newTransmission)=> {setTransmissionValue(newTransmission)};
   const brandChange               = (newBrand)       => {setBrandValue(newBrand)};
 
-  const currentNavLocation = 'test'
+  const currentNavLocation = 'home'
   const [pageValue, setPageValue] = useState(currentNavLocation)
   const pageChange                = (newPage)        => {setPageValue(newPage); setCarClicked()}
 
   const [carClicked, setCarClicked] = useState()
   const carClickChange = (newCarClicked) => {setCarClicked(newCarClicked)}
-  let carShowing = false
 
   if(carClicked && pageValue !== "car"){
     setPageValue("car")
+    window.scrollTo(0, 0) // scrolls to the top of the page when the user clicks on a car - would other wise be half way down the page if scrolled
   }
 
 
@@ -72,9 +72,8 @@ const cartest = {  // DELETE THIS LATER
     "seatCount": 5,
     "doorCount": 5,
     "colour": "Red",
-    "description": ""
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor felis quis odio ornare molestie. Ut aliquam massa et dui condimentum, eget pulvinar neque tincidunt. Proin lacus eros, interdum eu neque vitae, venenatis faucibus leo. Ut dolor nisi, suscipit eget nisl placerat, interdum iaculis risus. Donec nunc tellus, pretium in eleifend ut, mollis ac eros. In non ullamcorper purus. Donec ut nibh iaculis, bibendum nibh non, hendrerit ex. Vestibulum volutpat dolor ipsum, nec dapibus urna porta at. Ut malesuada sodales commodo. Vestibulum sit amet nisl et neque euismod finibus. Nullam condimentum elementum massa, tempus hendrerit lectus ullamcorper vitae."
 }//---------------
-  
 
   switch(pageValue) {
     case 'cars':
@@ -170,25 +169,7 @@ const cartest = {  // DELETE THIS LATER
           />
         </>
       );
-
-    case 'test':
-      return(
-        <>
-          <div className="header">
-            <Banner/>
-            <NavMenu 
-              onChange={pageChange}
-              onSetPage={pageValue}
-            />
-          </div>
-          <CarDetailsPage 
-            OnReturn={() => {setCarClicked(); setPageValue("cars")}}
-            car={cartest}
-          />
-        </>
-      );
-
-        
+              
     default:
       return(
         <>

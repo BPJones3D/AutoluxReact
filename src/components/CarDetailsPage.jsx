@@ -1,4 +1,5 @@
 import './CarDetailsPage-module.css';
+import { useState } from 'react';
 
 
 
@@ -7,9 +8,40 @@ function removeSpace(str) {
 }
 
 
+const collapseIcons = [
+    './symbols/icon_chevron_up_1.png',
+    './symbols/icon_chevron_down_1.png'
+];
+
 
 function CarDetailsPage({car, OnReturn})
 {
+    const [descIconState, setDescIconState] = useState(collapseIcons[0]);
+    const [techSummaryIconState, setTechSummaryIconState] = useState(collapseIcons[0]);
+    const [descriptionCollapsed, setDescriptionCollapsed] = useState(false);
+    const [technicalCollapsed, setTechnicalCollapsed] = useState(false);
+    
+    const changeDescIcon = () => {
+        if(descIconState === collapseIcons[0]){
+            setDescIconState(collapseIcons[1])
+            setDescriptionCollapsed(true)
+        }
+        else if(descIconState === collapseIcons[1]){
+            setDescIconState(collapseIcons[0])
+            setDescriptionCollapsed(false)
+        }
+    };
+
+    const changeTecIcon = () => {
+        if(techSummaryIconState === collapseIcons[0]){
+            setTechSummaryIconState(collapseIcons[1])
+            setTechnicalCollapsed(true)
+        }
+        else if(techSummaryIconState === collapseIcons[1]){
+            setTechSummaryIconState(collapseIcons[0])
+            setTechnicalCollapsed(false)
+        }
+    };
 
     if(car){
         return(
@@ -59,6 +91,101 @@ function CarDetailsPage({car, OnReturn})
                                 </div>
                             </div>
                         </div>
+
+                        <div className="description-section">
+
+                            <button className="details-collapse-btn" onClick={() => changeDescIcon()}>
+                                <img src={descIconState} alt="return icon"></img>
+                                <h3>Description</h3>
+                            </button>
+                            <span>
+                                {!descriptionCollapsed &&
+                                    <p className="description-text">{car.description}</p>
+                                }
+                            </span>
+                        </div>
+                        <div className="page-divider"/>
+                        <div className="tech-summary-section">
+
+                            <button className="details-collapse-btn" onClick={() => changeTecIcon()}>
+                                <img src={techSummaryIconState} alt="return icon"></img>
+                                <h3>Technical Summary</h3>
+                            </button>
+                            <span>
+                                {!technicalCollapsed &&
+                                    <div className="technical-table text-white">
+                                        <div className="tech-column">
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Brand</p>
+                                                <p className="tech-tile-value">{car.brand}</p>
+                                            </div>
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Model</p>
+                                                <p className="tech-tile-value">{car.name}</p>
+                                            </div>
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Year</p>
+                                                <p className="tech-tile-value">{car.year}</p>
+                                            </div>
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Asking Price</p>
+                                                <p className="tech-tile-value">£{car.price.toLocaleString()}</p>
+                                            </div>
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Colour</p>
+                                                <p className="tech-tile-value">{car.colour}</p>
+                                            </div>
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Miles</p>
+                                                <p className="tech-tile-value">{car.miles.toLocaleString()}</p>
+                                            </div>
+                                        </div>
+                                        <div className="tech-column">
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Fuel</p>
+                                                <p className="tech-tile-value">{car.fuelType}</p>
+                                            </div>
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Transmission</p>
+                                                <p className="tech-tile-value">{car.transmission}</p>
+                                            </div>
+
+                                            {car.fuelType === "Electric" ? 
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Range</p>
+                                                <p className="tech-tile-value">{car.tankCapacity} Miles</p> 
+                                                {/* change if ev */}
+                                            </div>
+                                            :
+                                            <>
+                                                <div className="tech-tile">
+                                                    <p className="tech-tile-title">Tank</p>
+                                                    <p className="tech-tile-value">{car.tankCapacity} Liters</p> 
+                                                    {/* change if ev */}
+                                                </div>
+                                                <div className="tech-tile">
+                                                    <p className="tech-tile-title">MPG</p>
+                                                    <p className="tech-tile-value">{car.milesPerGallon}</p>
+                                                </div>
+                                            </>                               
+                                            }
+                                                
+
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Doors</p>
+                                                <p className="tech-tile-value">{car.doorCount}</p>
+                                            </div>
+                                            <div className="tech-tile">
+                                                <p className="tech-tile-title">Seats</p>
+                                                <p className="tech-tile-value">{car.seatCount}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </span>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
