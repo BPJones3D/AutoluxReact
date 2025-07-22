@@ -4,7 +4,8 @@ import CarList from './components/CarList';
 import FilterMenu from './components/FilterSystem/FilterMenu';
 import NavMenu from './components/NavMenu';
 import CarDetailsPage from './components/CarDetailsPage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 
 function App() {
   const [sortByValue, setSortByValue] = useState("Relevancy");
@@ -57,28 +58,36 @@ function App() {
     window.scrollTo(0, 0) // scrolls to the top of the page when the user clicks on a car - would other wise be half way down the page if scrolled
   }
 
-
-const cartest = {  // DELETE THIS LATER
-    "id": "a795c786-f893-450d-1da4-08ddb188451b",
-    "brand": "Ford",
-    "name": "Focus ST",
-    "year": 2020,
-    "price": 34857,
-    "miles": 34827,
-    "transmission": "Manual",
-    "fuelType": "Petrol",
-    "tankCapacity": 52,
-    "milesPerGallon": 35.3,
-    "seatCount": 5,
-    "doorCount": 5,
-    "colour": "Red",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor felis quis odio ornare molestie. Ut aliquam massa et dui condimentum, eget pulvinar neque tincidunt. Proin lacus eros, interdum eu neque vitae, venenatis faucibus leo. Ut dolor nisi, suscipit eget nisl placerat, interdum iaculis risus. Donec nunc tellus, pretium in eleifend ut, mollis ac eros. In non ullamcorper purus. Donec ut nibh iaculis, bibendum nibh non, hendrerit ex. Vestibulum volutpat dolor ipsum, nec dapibus urna porta at. Ut malesuada sodales commodo. Vestibulum sit amet nisl et neque euismod finibus. Nullam condimentum elementum massa, tempus hendrerit lectus ullamcorper vitae."
-}//---------------
+  useEffect(() => { // resets the filters when the page changes
+    setSortByValue("Relevancy");
+    setOrderValue(true);
+    setSearchNameValue("");
+    setYearMinValue(0);
+    setYearMaxValue(1000000);
+    setPriceMinValue(0);
+    setPriceMaxValue(1000000);
+    setMilesMinValue(0);
+    setMilesMaxValue(1000000);
+    setMpgMinValue(0);
+    setMpgMaxValue(1000000);
+    setTankCapacityMinValue(0);
+    setTankCapacityMaxValue(1000000);
+    setEvRangeMinValue(0);
+    setEvRangeMaxValue(1000000);
+    setSeatsMinValue(0);
+    setSeatsMaxValue(1000000);
+    setDoorsMinValue(0);
+    setDoorsMaxValue(1000000);
+    setFuelTypeValue([])
+    setTransmissionValue([])
+    setBrandValue([])
+  }, [pageValue]);
 
   switch(pageValue) {
     case 'cars':
       return (
       <>
+      {console.log(sortByValue)}
         <div className="header">
           <Banner/>
           <NavMenu
@@ -149,6 +158,8 @@ const cartest = {  // DELETE THIS LATER
             transmissionValue={transmissionValue}
             brandValue={brandValue}
             onCarClicked={carClickChange}
+
+            setSortByValue={setSortByValue}
           />
         </div>
       </>);

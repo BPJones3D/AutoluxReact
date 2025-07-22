@@ -22,7 +22,6 @@ function CarList({
     onCarClicked
 })
 {
-
     const carResult = use(fetchCars);
     const [cars, setCars] = useState(carResult);
     
@@ -104,7 +103,6 @@ const sortedCars = filteredCars.slice().sort((a, b) => {
             field = "id"; // sort by name in default case
             break;
     }
-
     if (typeof a[field] === "string") {
         return orderValue
             ? a[field].localeCompare(b[field])
@@ -115,9 +113,8 @@ const sortedCars = filteredCars.slice().sort((a, b) => {
             : a[field] - b[field];
     }
 });
-
     return (
-        <div className="forSale-container">    
+        <div className="forSale-container">
             <div className="text-white text-center pt-5 pb-2">
                 <h2 className="pb-0 mb-0">For Sale</h2>
                 <i><p className="text-info">{filteredCars.length} cars found</p></i>
