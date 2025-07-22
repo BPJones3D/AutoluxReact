@@ -17,9 +17,9 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
   - seats (double slider)
   - doors (double slider)
   - brand (checklist)
+- Individual car page details
  
 # Todo Backlog
-- Individual car page details
 - Search paging
 - Basic home page
 - Basic about page
