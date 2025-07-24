@@ -4,6 +4,7 @@ import CarList from './components/CarList';
 import FilterMenu from './components/FilterSystem/FilterMenu';
 import NavMenu from './components/NavMenu';
 import CarDetailsPage from './components/CarDetailsPage';
+import AdminPage from './components/admin/AdminPage';
 import { useEffect, useState } from 'react';
 
 
@@ -46,15 +47,19 @@ function App() {
   const transmissionChange        = (newTransmission)=> {setTransmissionValue(newTransmission)};
   const brandChange               = (newBrand)       => {setBrandValue(newBrand)};
 
-  const currentNavLocation = 'home'
+  const currentNavLocation = 'admin' // make sure this is "home" on publish
   const [pageValue, setPageValue] = useState(currentNavLocation)
   const pageChange                = (newPage)        => {setPageValue(newPage); setCarClicked()}
 
   const [carClicked, setCarClicked] = useState()
   const carClickChange = (newCarClicked) => {setCarClicked(newCarClicked)}
 
+
+
+
   if(carClicked && pageValue !== "car"){
     setPageValue("car")
+    console.log(carClicked)
     window.scrollTo(0, 0) // scrolls to the top of the page when the user clicks on a car - would other wise be half way down the page if scrolled
   }
 
@@ -175,6 +180,23 @@ function App() {
             />
           </div>
           <CarDetailsPage 
+            OnReturn={() => {setCarClicked(); setPageValue("cars")}}
+            car={carClicked}
+          />
+        </>
+      );
+
+  case 'admin':
+      return(
+        <>
+          <div className="header">
+            <Banner/>
+            <NavMenu 
+              onChange={pageChange}
+              onSetPage={pageValue}
+            />
+          </div>
+          <AdminPage 
             OnReturn={() => {setCarClicked(); setPageValue("cars")}}
             car={carClicked}
           />

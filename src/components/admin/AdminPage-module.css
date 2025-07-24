@@ -1,0 +1,373 @@
+.info-panel{
+    display: flex;
+    justify-content: space-between;
+    line-height: 100%;
+}
+
+.add-new-car-btn{
+    color: white;
+}
+
+.add-new-car-btn:hover{
+    color: #FFB000;
+}
+
+.tile-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tile-body{
+    display: flex;
+    flex-direction: row;
+    background-color: #1E2229;
+    color: white;
+    width: 100%;
+}
+
+.tile-body img{
+    height: 100%;
+    padding-right: 6px;
+}
+
+.main-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.name-id{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 16px;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+}
+
+.name-id p{
+    line-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.details-buttons{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.id-text{
+    color: grey;
+    font-size: 14px;
+}
+
+.details{
+    display: grid;
+    width: 100%;
+}
+
+.buttons{
+    display: flex;
+    width: fit-content;
+    gap: 8px;
+    padding: 0 8px;
+}
+
+.buttons img{
+    height: 26px;
+    padding: 0;
+    margin: 2px;
+}
+
+.buttons img:hover{
+    height: 30px;
+    padding: 0;
+    margin: 0px;
+    filter: brightness(0) saturate(100%) invert(61%) sepia(91%) saturate(748%) hue-rotate(1deg) brightness(101%) contrast(101%);
+}
+
+.detail-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-item p{
+    line-height: 100%;
+    margin: 0;
+    padding: 2px;
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
+    background-color: #2E343B;
+}
+
+.detail-item-value{
+    background-color: #4D586A !important;
+    text-align: end;
+}
+
+@media (max-width: 360px){
+    .info-panel{
+        flex-direction: column;
+    }
+
+    .tile-car-image{
+        visibility: collapse;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .tile-body{
+        padding: 4px;
+        height: fit-content;
+        width: 100%;
+    }
+
+    .details{
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-flow: row;
+        height: 100%;
+        column-gap: 8px;
+        row-gap: 2px;
+    }
+
+    .detail-item p{
+        display: flex;
+        font-size: 14px;
+        text-overflow:clip;
+        width: 50%;
+    }
+    .detail-item-value{
+        justify-content:flex-end !important;
+    }
+
+    .price{
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        grid-row: span 1;
+    }
+
+    .price p{
+        display: flex;
+        text-align:left;
+        justify-content:flex-start;
+        align-items: center; 
+    }
+    .details-buttons{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding-top: 4px;
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 4px;
+    }
+
+    .name-id{
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 600px){
+    .tile-car-image{
+        visibility: collapse;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .tile-body{
+        padding: 4px;
+        height: fit-content;
+        width: 100%;
+    }
+
+    .details{
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-flow: row;
+        height: 100%;
+        column-gap: 8px;
+        row-gap: 2px;
+    }
+
+    .detail-item p{
+        display: flex;
+        font-size: 14px;
+        text-overflow:clip;
+        width: 50%;
+    }
+    .detail-item-value{
+        justify-content:flex-end !important;
+    }
+
+    .price{
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        grid-row: span 1;
+    }
+
+    .price p{
+        display: flex;
+        text-align:left;
+        justify-content:flex-start;
+        align-items: center; 
+    }
+    .details-buttons{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding-top: 4px;
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 4px;
+    }
+
+    .name-id{
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 767px){
+    .tile-car-image{
+        visibility: collapse;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .tile-body{
+        padding: 4px;
+        height: 84px;
+        width: 100%;
+    }
+
+    .details{
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-flow: row;
+        height: 100%;
+        column-gap: 8px;
+        row-gap: 2px;
+    }
+
+    .detail-item p{
+        display: flex;
+        font-size: 14px;
+        text-overflow:clip;
+        width: 50%;
+    }
+    .detail-item-value{
+        justify-content:flex-end !important;
+    }
+
+    .price{
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        grid-row: span 1;
+    }
+
+    .price p{
+        display: flex;
+        text-align:left;
+        justify-content:flex-start;
+        align-items: center; 
+    }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+    .tile-body{
+        padding: 4px;
+        height: 84px;
+    }
+
+    .details{
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-flow: row;
+        height: 100%;
+        column-gap: 8px;
+        row-gap: 2px;
+    }
+
+    .detail-item p{
+        display: flex;
+        font-size: 14px;
+        text-overflow:clip;
+        width: 50%;
+    }
+    .detail-item-value{
+        justify-content:flex-end !important;
+    }
+
+    .price{
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        grid-row: span 1;
+    }
+
+    .price p{
+        display: flex;
+        text-align:left;
+        justify-content:flex-start;
+        align-items: center; 
+    }
+}
+
+@media (min-width: 992px){
+    .tile-body{
+        padding: 4px;
+        height: 64px;
+    }
+
+    .details{
+        grid-template-rows: repeat(2, 1fr);
+        grid-auto-flow: column;
+        height: 100%;
+        column-gap: 8px;
+        row-gap: 2px;
+    }
+
+    .detail-item p{
+        font-size: 14px;
+    }
+
+
+    .price{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        grid-row: span 2;
+        gap: 2px
+    }
+
+    .price p{
+        display: flex;
+        text-align: center;
+        justify-content: space-around;
+        align-items: center; 
+    }
+}
+
+@media (min-width: 1200px){
+    .detail-item p{
+        font-size: 15px;
+    }
+}

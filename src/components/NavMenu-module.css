@@ -1,8 +1,15 @@
+.navBtn{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .navBtn Button{
     background: none;
     border: none;
     position: relative;
     color: white;
+    
 }
 
 .navBtn Button:disabled{
@@ -34,4 +41,13 @@
     width: 80%;
     height: 3px;
     background: white;
+}
+
+.admin{
+    display: flex;
+    float: right !important;
+    justify-content: end !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }

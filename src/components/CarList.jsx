@@ -119,7 +119,7 @@ const sortedCars = filteredCars.slice().sort((a, b) => {
                 <h2 className="pb-0 mb-0">For Sale</h2>
                 <i><p className="text-info">{filteredCars.length} cars found</p></i>
             </div>
-            <div className="container d-flex flex-wrap justify-content-center test1">
+            <div className="container d-flex flex-wrap justify-content-center">
                 {sortedCars.map(car => (
                     <CarTile key={car.id} car={car} onTileClicked={onCarClicked}/>
                 ))}

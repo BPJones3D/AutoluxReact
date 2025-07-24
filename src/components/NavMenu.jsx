@@ -9,7 +9,8 @@ function NavMenu({onChange, onSetPage})
         {label: "Home", page: 'home'},
         {label: "Cars", page: 'cars'},
         {label: "About Us", page: 'about'},
-        {label: "Contact Us", page: 'contact'}
+        {label: "Contact Us", page: 'contact'},
+        {label: "Admin", page: 'admin'}
     ]
 
     return (
