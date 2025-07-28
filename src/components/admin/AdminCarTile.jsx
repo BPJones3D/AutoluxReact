@@ -1,29 +1,48 @@
 import './AdminPage-module.css';
-/* 
-todo list
-----------
-add new car popup
-add new car functionality
-
-delete car functionality
-preview car functionality
-
-edit car popup
-edit car functionality
-
-search name
-search id
-
-*/
 
 function removeSpace(str) {
   return str.replace(/\s+/g, '');
 }
 
-function AdminCarTile({car}){
+function alertUser(str) {
+  alert(str)
+}
+
+const deleteCar = async (carToDelete) => {
+    try {
+        const response = await fetch(`https://localhost:44357/api/car`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(carToDelete),
+        });
+
+        if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        console.log("Deleted car:", carToDelete);
+        window.location.reload();
+    } catch (error) {
+        alertUser("CAR DELETION FAILED - Something went wrong...");
+        console.error("Error deleting car:", error, carToDelete);
+    }
+};
+
+function AdminCarTile({car, onEditBtnClicked, onPreviewBtnClicked}){
     return(
         <div className="tile-body">
-            <img className="tile-car-image" src={`./carImages/${removeSpace(car.brand)}${removeSpace(car.name)}${car.year}_3x2_720x480.png`} alt={`${car.brand} ${car.name}`} />
+            
+            <img 
+                className="tile-car-image" 
+                src={`./carImages/${removeSpace(car.brand)}${removeSpace(car.name)}${car.year}_3x2_720x480.png`} 
+                alt={`${car.brand} ${car.name}`} 
+                onError={(e) =>{
+                    e.target.onError = null;
+                    e.target.src = `./carImages/missing_car_image_3x2_720x480.png`;
+                }}
+            />
             <div className="main-box">
                 <div className="name-id">
                     <button onClick={() => navigator.clipboard.writeText(car.brand + " " + car.name + " " + car.year)}>
@@ -74,13 +93,13 @@ function AdminCarTile({car}){
 
                     </div>
                     <div className="buttons">
-                        <button>
+                        <button onClick={() => deleteCar(car)}>
                             <img src={'./symbols/icon_delete_1.png'} alt="delete"></img>
                         </button>
-                        <button>
+                        <button onClick={() => onPreviewBtnClicked(car)}>
                             <img src={'./symbols/icon_preview_1.png'} alt="preview"></img>
                         </button>
-                        <button>
+                        <button onClick={() => onEditBtnClicked(car)}>
                             <img src={'./symbols/icon_edit_1.png'} alt="edit"></img>
                         </button>
                         

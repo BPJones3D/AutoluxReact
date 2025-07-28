@@ -8,7 +8,14 @@ function CarTile({ car, onTileClicked }) {
   return (
     <div className="car-tile" onClick={() => onTileClicked((car))}>
         {/* car image and name */}
-        <img src={`./carImages/${removeSpace(car.brand)}${removeSpace(car.name)}${car.year}_3x2_720x480.png`} alt={`${car.brand} ${car.name}`} />
+        <img 
+            src={`./carImages/${removeSpace(car.brand)}${removeSpace(car.name)}${car.year}_3x2_720x480.png`} 
+            alt={`${car.brand} ${car.name}`} 
+            onError={(e) =>{
+                e.target.onError = null;
+                e.target.src = `./carImages/missing_car_image_3x2_720x480.png`;
+            }}
+        />
         <h2 className="car-name fw-light">{car.brand} {car.name}</h2>
 
         {/* car details */}

@@ -18,6 +18,11 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
   - doors (double slider)
   - brand (checklist)
 - Individual car page details
+- Admin Pages:
+  - Browse Cars
+  - Edit Car
+  - Delete Car
+  - Add Car
  
 # Todo Backlog
 - Search paging
@@ -32,6 +37,10 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
 ![car details 1](https://i.imgur.com/tqIq3ZM.png)
 ![car details 2](https://i.imgur.com/Qa2ZJyl.png)
 ![car details collapsed](https://i.imgur.com/WpNP2qn.png)
+![Admin Browse Page](https://i.imgur.com/gppdhwi.png)
+![Admin Edit Page](https://i.imgur.com/aCCMkG5.png)
+![Admin Add New Car Page](https://i.imgur.com/j6c5iYx.png)
+
 
 # Database example
 | Id            | Brand         | Name  | Year | Price | Colour | Description | DoorCount | FuelType | Miles | MilesPerGallon | SeatCount | TankCapacity | Transmission |

@@ -5,10 +5,33 @@ import FilterMenu from './components/FilterSystem/FilterMenu';
 import NavMenu from './components/NavMenu';
 import CarDetailsPage from './components/CarDetailsPage';
 import AdminPage from './components/admin/AdminPage';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, use } from 'react';
+import EditCarPage from './components/admin/EditCarPage';
+import NewCarPage from './components/admin/NewCarPage';
+
+const ogfetchedCars = fetch('https://localhost:44357/api/car').then(response => response.json());
+
+
+
+/* 
+todo list
+----------
+search name
+search id
+
+*/
+
 
 
 function App() {
+  const [fetchedCars, setFetchedCars] = useState([]);
+
+  const newFetchCars = async () => {
+    const oldfetchedCars = await fetch('https://localhost:44357/api/car').then(response => response.json());
+    setFetchedCars(oldfetchedCars)
+  }
+  
+
   const [sortByValue, setSortByValue] = useState("Relevancy");
   const [orderValue, setOrderValue] = useState(true);
   const [searchValue, setSearchNameValue] = useState("");
@@ -54,12 +77,14 @@ function App() {
   const [carClicked, setCarClicked] = useState()
   const carClickChange = (newCarClicked) => {setCarClicked(newCarClicked)}
 
+  const [carToEditClicked, setCarToEditClicked] = useState()
+
+
 
 
 
   if(carClicked && pageValue !== "car"){
     setPageValue("car")
-    console.log(carClicked)
     window.scrollTo(0, 0) // scrolls to the top of the page when the user clicks on a car - would other wise be half way down the page if scrolled
   }
 
@@ -83,9 +108,10 @@ function App() {
     setSeatsMaxValue(1000000);
     setDoorsMinValue(0);
     setDoorsMaxValue(1000000);
-    setFuelTypeValue([])
-    setTransmissionValue([])
-    setBrandValue([])
+    setFuelTypeValue([]);
+    setTransmissionValue([]);
+    setBrandValue([]);
+    newFetchCars();
   }, [pageValue]);
 
   switch(pageValue) {
@@ -140,6 +166,7 @@ function App() {
             onBrandChange={brandChange}
           />
           <CarList
+            fetchedCarList={fetchedCars}
             sortByValue={sortByValue}
             orderValue={orderValue}
             searchValue={searchValue}
@@ -163,7 +190,6 @@ function App() {
             transmissionValue={transmissionValue}
             brandValue={brandValue}
             onCarClicked={carClickChange}
-
             setSortByValue={setSortByValue}
           />
         </div>
@@ -196,13 +222,56 @@ function App() {
               onSetPage={pageValue}
             />
           </div>
-          <AdminPage 
-            OnReturn={() => {setCarClicked(); setPageValue("cars")}}
-            car={carClicked}
+          <AdminPage
+            adminFetchCars={fetchedCars}
+            onCarEditClicked={(car) => {
+              setCarToEditClicked(car);
+              setPageValue("admin-edit");
+            }}
+            onCarPreviewClicked={carClickChange}
+            onNewCarClicked={(car) => {
+              setCarToEditClicked(car);
+              setPageValue("admin-newCar");
+            }}
+          />
+        </>
+      );
+
+  case 'admin-edit':
+      return(
+        <>
+          <div className="header">
+            <Banner/>
+            <NavMenu 
+              onChange={pageChange}
+              onSetPage={pageValue}
+            />
+          </div>
+          <EditCarPage     
+            carSelected={carToEditClicked}
+            onSaveBtnPressed={() => newFetchCars()}
+            OnReturn={() => {setCarClicked(); setPageValue("admin")}}
           />
         </>
       );
               
+  case 'admin-newCar':
+      return(
+        <>
+          <div className="header">
+            <Banner/>
+            <NavMenu 
+              onChange={pageChange}
+              onSetPage={pageValue}
+            />
+          </div>
+          <NewCarPage     
+            onSaveBtnPressed={() => newFetchCars()}
+            OnReturn={() => {setCarClicked(); setPageValue("admin")}}
+          />
+        </>
+      );
+
     default:
       return(
         <>

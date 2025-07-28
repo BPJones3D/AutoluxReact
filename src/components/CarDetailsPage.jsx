@@ -56,8 +56,15 @@ function CarDetailsPage({car, OnReturn})
                         <div className="feature-section">
 
                             <div className="featured-image"> {/* large picture of car and "view gallery" button */}
-                                <img className="car-image" src={`./carImages/${removeSpace(car.brand)}${removeSpace(car.name)}${car.year}_3x2_720x480.png`} alt={``} /> {/* make this take from prop */}
-                                {console.log(car)}
+                                <img 
+                                className="car-image" 
+                                src={`./carImages/${removeSpace(car.brand)}${removeSpace(car.name)}${car.year}_3x2_720x480.png`} 
+                                alt={``} 
+                                onError={(e) =>{
+                                    e.target.onError = null;
+                                    e.target.src = `./carImages/missing_car_image_3x2_720x480.png`;
+                                }}
+                                /> {/* make this take from prop */}
                                 <button className="gallery-btn" onClick={() => console.log("view-gallery...")}>
                                     <img src={"./symbols/icon_gallery.png"} alt="return icon"></img>
                                     <p>View gallery</p>
@@ -154,14 +161,12 @@ function CarDetailsPage({car, OnReturn})
                                             <div className="tech-tile">
                                                 <p className="tech-tile-title">Range</p>
                                                 <p className="tech-tile-value">{car.tankCapacity} Miles</p> 
-                                                {/* change if ev */}
                                             </div>
                                             :
                                             <>
                                                 <div className="tech-tile">
                                                     <p className="tech-tile-title">Tank</p>
                                                     <p className="tech-tile-value">{car.tankCapacity} Liters</p> 
-                                                    {/* change if ev */}
                                                 </div>
                                                 <div className="tech-tile">
                                                     <p className="tech-tile-title">MPG</p>

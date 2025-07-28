@@ -2,9 +2,8 @@ import React, { use, useState } from "react";
 import CarTile from "./CarTile";
 import './CarList-module.css';
 
-const fetchCars = fetch('https://localhost:44357/api/car').then(response => response.json());
-
 function CarList({
+    fetchedCarList,
     sortByValue,
     orderValue,
     searchValue,
@@ -21,10 +20,7 @@ function CarList({
     brandValue = [],
     onCarClicked
 })
-{
-    const carResult = use(fetchCars);
-    const [cars, setCars] = useState(carResult);
-    
+{    
     if (yearMinValue > yearMaxValue){
         const oldMin = yearMinValue; const oldMax = yearMaxValue
         yearMinValue = oldMax; yearMaxValue = oldMin
@@ -58,7 +54,7 @@ function CarList({
         doorsMinValue = oldMax; doorsMaxValue = oldMin
     } 
 
-    const filteredCars = cars.filter(
+    const filteredCars = fetchedCarList.filter(
         (car) => 
             (searchValue.length === 0 || (car.brand + " " + car.name).toLowerCase().includes(searchValue.toLowerCase())) &&
             car.year >= yearMinValue && car.year <= yearMaxValue &&
@@ -121,7 +117,11 @@ const sortedCars = filteredCars.slice().sort((a, b) => {
             </div>
             <div className="container d-flex flex-wrap justify-content-center">
                 {sortedCars.map(car => (
-                    <CarTile key={car.id} car={car} onTileClicked={onCarClicked}/>
+                    <CarTile 
+                        key={car.id} 
+                        car={car} 
+                        onTileClicked={onCarClicked}
+                    />
                 ))}
             </div>
         </div>

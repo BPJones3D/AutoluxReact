@@ -16,7 +16,7 @@ function NavMenu({onChange, onSetPage})
     return (
         <header className="navBtn bg-secondary p-1 text-center">
             {pages.map((option) => (
-                option.page === page ? (
+                option.page === onSetPage ? (
                     <button 
                         className="navBtn fs-5 ms-4 me-4 current" 
                         onClick={() => setPage(prev => {const newStatus = option.page; onChange(newStatus); return newStatus})}>
