@@ -61,6 +61,7 @@
     display: flex;
     width: 100%;
     height: 100%;
+    justify-content: space-between;
 }
 
 .id-text{
@@ -149,14 +150,14 @@
         justify-content:flex-end !important;
     }
 
-    .price{
+    .item-price{
         display: flex;
         flex-direction: row;
         text-align: center;
         grid-row: span 1;
     }
 
-    .price p{
+    .item-price p{
         display: flex;
         text-align:left;
         justify-content:flex-start;
@@ -214,14 +215,14 @@
         justify-content:flex-end !important;
     }
 
-    .price{
+    .item-price{
         display: flex;
         flex-direction: row;
         text-align: center;
         grid-row: span 1;
     }
 
-    .price p{
+    .item-price p{
         display: flex;
         text-align:left;
         justify-content:flex-start;
@@ -271,7 +272,7 @@
 
     .detail-item p{
         display: flex;
-        font-size: 14px;
+        font-size: 13px;
         text-overflow:clip;
         width: 50%;
     }
@@ -279,14 +280,14 @@
         justify-content:flex-end !important;
     }
 
-    .price{
+    .item-price{
         display: flex;
         flex-direction: row;
         text-align: center;
         grid-row: span 1;
     }
 
-    .price p{
+    .item-price p{
         display: flex;
         text-align:left;
         justify-content:flex-start;
@@ -300,16 +301,17 @@
     }
 
     .details{
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 0fr);
         grid-auto-flow: row;
         height: 100%;
         column-gap: 8px;
         row-gap: 2px;
+        width: auto;
     }
 
     .detail-item p{
         display: flex;
-        font-size: 14px;
+        font-size: 13px;
         text-overflow:clip;
         width: 50%;
     }
@@ -317,19 +319,31 @@
         justify-content:flex-end !important;
     }
 
-    .price{
+    .item-price{
         display: flex;
         flex-direction: row;
         text-align: center;
         grid-row: span 1;
     }
 
-    .price p{
+    .item-price p{
         display: flex;
         text-align:left;
         justify-content:flex-start;
         align-items: center; 
     }
+
+    .item-colour, .item-doors, .item-tank{
+        width: 100px;
+    }
+
+    .item-miles, .item-transmission, .item-mpg{
+        width: 190px;
+    }
+
+    .item-seats, .item-fuel, .item-price{
+        width: 120px;
+    }    
 }
 
 @media (min-width: 992px){
@@ -346,29 +360,97 @@
         row-gap: 2px;
     }
 
+    .details{
+        width: auto;
+    }
+
     .detail-item p{
         font-size: 14px;
     }
 
 
-    .price{
+    .item-price{
         display: flex;
         flex-direction: column;
         text-align: center;
         grid-row: span 2;
-        gap: 2px
+        gap: 2px;
+        width: 120px;
     }
 
-    .price p{
+    .item-price p{
         display: flex;
         text-align: center;
         justify-content: space-around;
         align-items: center; 
+    }
+
+    .item-colour, .item-miles{
+        width: 120px;
+    }
+
+    .item-seats, .item-doors{
+        width: 120px;
+    }
+
+    .item-transmission, .item-fuel{
+        width: 200px;
+    }
+
+    .item-tank, .item-mpg{
+        width: 120px;
     }
 }
 
 @media (min-width: 1200px){
     .detail-item p{
         font-size: 15px;
+    }
+
+   .item-price{
+        width: 160px;
+    }
+
+    .item-colour, .item-miles{
+        width: 160px;
+    }
+
+    .item-seats, .item-doors{
+        width: 160px;
+    }
+
+    .item-transmission, .item-fuel{
+        width: 220px;
+    }
+
+    .item-tank, .item-mpg{
+        width: 160px;
+    }
+
+}
+
+@media (min-width: 1400px){
+    .detail-item p{
+        font-size: 15px;
+    }
+
+   .item-price{
+        width: 180px;
+    }
+
+    .item-colour, .item-miles{
+        width: 200px;
+    }
+
+    .item-seats, .item-doors{
+        width: 200px;
+    }
+
+    .item-transmission, .item-fuel{
+        width: 250px;
+    }
+
+    .item-tank, .item-mpg{
+        width: 200px;
     }
 }

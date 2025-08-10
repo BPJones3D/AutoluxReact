@@ -25,21 +25,29 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
   - Add Car
  
 # Todo Backlog
+- Login Page (for admin)
 - Search paging
 - Basic home page
 - Basic about page
 - Basic contact page
 - Car list view modes (list / tiles / minimal)
 
+# Known issues
+- The "return" button on preview page doesn't return to the admin page
+- Creating a car takes the user to the default page, this should be either the admin car list
+- There is no indication for what details are missing when submitting an invalid car
+- Logging out should refresh the whole site, without the admin data
+- Clicking "admin page" button 3+ times before logging out will not take the user back to the home page
+
 # Gallery
-![car list default](https://i.imgur.com/9A74oEC.png)
-![car list with filtering](https://i.imgur.com/XHB7Cy4.png)
-![car details 1](https://i.imgur.com/tqIq3ZM.png)
-![car details 2](https://i.imgur.com/Qa2ZJyl.png)
-![car details collapsed](https://i.imgur.com/WpNP2qn.png)
-![Admin Browse Page](https://i.imgur.com/gppdhwi.png)
-![Admin Edit Page](https://i.imgur.com/aCCMkG5.png)
-![Admin Add New Car Page](https://i.imgur.com/j6c5iYx.png)
+![Car list default](https://i.imgur.com/9A74oEC.png)
+![Car list with filtering](https://i.imgur.com/XHB7Cy4.png)
+![Car details 1](https://i.imgur.com/tqIq3ZM.png)
+![Car details 2](https://i.imgur.com/Qa2ZJyl.png)
+![Car details collapsed](https://i.imgur.com/WpNP2qn.png)
+![Admin browse page](https://i.imgur.com/gppdhwi.png)
+![Admin edit page](https://i.imgur.com/aCCMkG5.png)
+![Admin add new car page](https://i.imgur.com/j6c5iYx.png)
 
 
 # Database example

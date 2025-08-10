@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './NavMenu-module.css'
 
-function NavMenu({onChange, onSetPage})
+function NavMenu({onChange, onSetPage, onLoginChange, loggedIn})
 {
     const [page, setPage] = useState(onSetPage)
 
@@ -10,8 +10,11 @@ function NavMenu({onChange, onSetPage})
         {label: "Cars", page: 'cars'},
         {label: "About Us", page: 'about'},
         {label: "Contact Us", page: 'contact'},
-        {label: "Admin", page: 'admin'}
+        //{label: "Admin", page: 'admin'}
     ]
+
+    // temp variable
+    //const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     return (
         <header className="navBtn bg-secondary p-1 text-center">
@@ -30,6 +33,30 @@ function NavMenu({onChange, onSetPage})
                     </button>
                 )
             ))}
+
+            {loggedIn ? 
+                <div className='loginBtn'>
+                    <button 
+                        className="navBtn fs-5" 
+                        onClick={() => setPage(prev => {const newStatus = "admin"; onChange(newStatus); return newStatus})}>
+                        <img src={'./symbols/icon-admin-edit.png'} alt="admin edit page icon"></img>
+                    </button>
+                    <button 
+                        className="navBtn fs-5" 
+                        onClick={() => {onLoginChange(false);}}>
+                        <img src={'./symbols/icon-exit.png'} alt="admin log out icon"></img>
+                    </button>
+                </div>
+             : 
+                <div className='loginBtn'>
+                    <button 
+                        className="navBtn fs-5" 
+                        //onClick={() => {onLoginChange(true);}}>
+                        onClick={() => setPage(prev => {const newStatus = "admin-login"; onChange(newStatus); return newStatus})}>
+                        <img src={'./symbols/icon-adminlogin.png'} alt="admin login icon"></img>
+                    </button>
+                </div>
+            }
         </header>
     )
 }

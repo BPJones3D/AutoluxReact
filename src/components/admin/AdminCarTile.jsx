@@ -54,39 +54,39 @@ function AdminCarTile({car, onEditBtnClicked, onPreviewBtnClicked}){
                 </div>
                 <div className="details-buttons">
                     <div className="details">
-                        <div className="detail-item">
+                        <div className="detail-item item-colour">
                             <p>Colour</p>
                             <p className="detail-item-value">{car.colour}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="detail-item item-miles">
                             <p>Miles</p>
                             <p className="detail-item-value">{car.miles.toLocaleString()}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="detail-item item-seats">
                             <p>Seats</p>
                             <p className="detail-item-value">{car.seatCount}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="detail-item item-doors">
                             <p>Doors</p>
                             <p className="detail-item-value">{car.doorCount}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="detail-item item-transmission">
                             <p>Transmission</p>
                             <p className="detail-item-value">{car.transmission}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="detail-item item-fuel">
                             <p>Fuel</p>
                             <p className="detail-item-value">{car.fuelType}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="detail-item item-tank">
                             <p>Tank</p>
                             <p className="detail-item-value">{car.tankCapacity}L</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="detail-item item-mpg">
                             <p>MPG</p>
                             <p className="detail-item-value">{car.milesPerGallon}</p>
                         </div>
-                        <div className="detail-item price">
+                        <div className="detail-item item-price">
                             <p>Price</p>
                             <p className="detail-item-value">£{car.price.toLocaleString()}</p>
                         </div>

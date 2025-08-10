@@ -8,6 +8,7 @@ import AdminPage from './components/admin/AdminPage';
 import { useEffect, useState, use } from 'react';
 import EditCarPage from './components/admin/EditCarPage';
 import NewCarPage from './components/admin/NewCarPage';
+import AdminLoginPage from './components/admin/AdminLoginPage';
 
 const ogfetchedCars = fetch('https://localhost:44357/api/car').then(response => response.json());
 
@@ -70,7 +71,7 @@ function App() {
   const transmissionChange        = (newTransmission)=> {setTransmissionValue(newTransmission)};
   const brandChange               = (newBrand)       => {setBrandValue(newBrand)};
 
-  const currentNavLocation = 'admin' // make sure this is "home" on publish
+  const currentNavLocation = 'home' // make sure this is "home" on publish
   const [pageValue, setPageValue] = useState(currentNavLocation)
   const pageChange                = (newPage)        => {setPageValue(newPage); setCarClicked()}
 
@@ -79,7 +80,7 @@ function App() {
 
   const [carToEditClicked, setCarToEditClicked] = useState()
 
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 
 
@@ -124,6 +125,8 @@ function App() {
           <NavMenu
             onChange={pageChange}
             onSetPage={pageValue}
+            onLoginChange={setIsLoggedIn}
+            loggedIn={isLoggedIn}
           />
         </div>
         <div className="main-content">
@@ -203,11 +206,35 @@ function App() {
             <NavMenu 
               onChange={pageChange}
               onSetPage={pageValue}
+              onLoginChange={setIsLoggedIn}
+              loggedIn={isLoggedIn}
             />
           </div>
           <CarDetailsPage 
             OnReturn={() => {setCarClicked(); setPageValue("cars")}}
             car={carClicked}
+          />
+        </>
+      );
+
+  case 'admin-login':
+      return(
+        <>
+          <div className="header">
+            <Banner/>
+            <NavMenu 
+              onChange={pageChange}
+              onSetPage={pageValue}
+              onLoginChange={setIsLoggedIn}
+              loggedIn={isLoggedIn}
+            />
+          </div>
+          <AdminLoginPage 
+            onLoginBypass={() => {
+              setIsLoggedIn(true)
+              setCarClicked(); 
+              setPageValue("admin")
+            }}
           />
         </>
       );
@@ -220,6 +247,14 @@ function App() {
             <NavMenu 
               onChange={pageChange}
               onSetPage={pageValue}
+              loggedIn={isLoggedIn}
+              onLoginChange={(e) => { // this removed the user from the admin page when loggin out
+                setIsLoggedIn(e);
+                if (!e) {
+                  setCarClicked(); 
+                  setPageValue("home")}
+                }
+              }
             />
           </div>
           <AdminPage
@@ -245,6 +280,8 @@ function App() {
             <NavMenu 
               onChange={pageChange}
               onSetPage={pageValue}
+              onLoginChange={setIsLoggedIn}
+              loggedIn={isLoggedIn}
             />
           </div>
           <EditCarPage     
@@ -263,6 +300,8 @@ function App() {
             <NavMenu 
               onChange={pageChange}
               onSetPage={pageValue}
+              onLoginChange={setIsLoggedIn}
+              loggedIn={isLoggedIn}
             />
           </div>
           <NewCarPage     
@@ -280,6 +319,8 @@ function App() {
           <NavMenu 
             onChange={pageChange}
             onSetPage={pageValue}
+            onLoginChange={setIsLoggedIn}
+            loggedIn={isLoggedIn}
           />
         </div>
         <div className="main-content text-center d-block pt-5">

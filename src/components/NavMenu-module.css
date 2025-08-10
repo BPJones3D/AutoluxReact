@@ -51,3 +51,16 @@
     margin: 0 !important;
     padding: 0 !important;
 }
+
+.loginBtn{
+    display: flex;
+    position: absolute !important;
+    float: right;
+    right: 0;
+    padding-right: 10px;
+}
+
+.loginBtn img{
+    width: 80%;
+    margin: 5% 0;
+}
