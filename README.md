@@ -24,13 +24,30 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
   - Delete Car
   - Add Car
  
-# Todo Backlog
+
+
+# High Prio ToDo 
+- User authentication
+    - Add an API call with a username and password to request a token
+    - Use the token as a header for all further API calls
+    - Logout (unauthorize) -- thanks to react, without this it's once authed always authed...
+    - A way to check if the token actually worked
+
+The header has been setup, I just need to make the login page request the token and then save the token in the var state in app.jsx
+    check this for:
+        create
+        update
+        delete
+    
+# Low Prio Todo
 - Login Page (for admin)
 - Search paging
 - Basic home page
 - Basic about page
 - Basic contact page
 - Car list view modes (list / tiles / minimal)
+
+
 
 # Known issues
 - The "return" button on preview page doesn't return to the admin page

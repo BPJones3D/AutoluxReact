@@ -1,12 +1,14 @@
 import './EditNewCarPage-module.css';
 import { useState, setState, use } from 'react';
 
-
 function removeSpace(str) {
   return str.replace(/\s+/g, '');
 }
 
-function EditCarPage({carSelected = {}, onSaveBtnPressed, OnReturn}) {
+function EditCarPage({carSelected = {}, onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
+  var url = siteURL;
+  var bearer = 'Bearer ' + bearerToken
+
 
 
 
@@ -42,10 +44,12 @@ function alertUser(str) {
 
   const putCarToApi = async () => {
     try {
-      const response = await fetch(`https://localhost:44357/api/car`, {
+      const response = await fetch(url + "api/car", {
         method: "PUT",
+        withCredentials: true,
         headers: {
-          "Content-Type": "application/json",
+          'Authorization': bearer,
+          "Content-Type": "application/json",      
         },
         body: JSON.stringify(carToSend),
       });

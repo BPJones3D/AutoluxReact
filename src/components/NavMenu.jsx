@@ -43,7 +43,7 @@ function NavMenu({onChange, onSetPage, onLoginChange, loggedIn})
                     </button>
                     <button 
                         className="navBtn fs-5" 
-                        onClick={() => {onLoginChange(false);}}>
+                        onClick={() => {{onLoginChange(false)} {window.location.reload()}}}>
                         <img src={'./symbols/icon-exit.png'} alt="admin log out icon"></img>
                     </button>
                 </div>

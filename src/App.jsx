@@ -10,9 +10,8 @@ import EditCarPage from './components/admin/EditCarPage';
 import NewCarPage from './components/admin/NewCarPage';
 import AdminLoginPage from './components/admin/AdminLoginPage';
 
-const ogfetchedCars = fetch('https://localhost:44357/api/car').then(response => response.json());
 
-
+const url = "https://localhost:44357/";
 
 /* 
 todo list
@@ -24,14 +23,36 @@ search id
 
 
 
+
 function App() {
   const [fetchedCars, setFetchedCars] = useState([]);
+  const [bearerToken, setBearerToken] = useState("")
+
+  function checkToken(token){
+    if(token != "")
+      {
+        setBearerToken(token)
+        setIsLoggedIn(true)
+        setCarClicked()
+        setPageValue("admin")
+      }
+    else
+      {
+        console.log("token wrong: " + token)
+      }
+  }
 
   const newFetchCars = async () => {
-    const oldfetchedCars = await fetch('https://localhost:44357/api/car').then(response => response.json());
-    setFetchedCars(oldfetchedCars)
+    const newfetchedCars = await 
+      fetch(url + "api/car", 
+        {
+          method: 'GET',
+        })
+      .then(response => response.json());
+    setFetchedCars(newfetchedCars)
   }
-  
+
+  console.log("token: " + bearerToken)
 
   const [sortByValue, setSortByValue] = useState("Relevancy");
   const [orderValue, setOrderValue] = useState(true);
@@ -81,7 +102,6 @@ function App() {
   const [carToEditClicked, setCarToEditClicked] = useState()
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
 
 
   if(carClicked && pageValue !== "car"){
@@ -235,6 +255,11 @@ function App() {
               setCarClicked(); 
               setPageValue("admin")
             }}
+            onLoginAttempt={() => {}}
+            url={url}
+            recievedBearerToken={ (token) =>{
+              checkToken(token)
+            }}
           />
         </>
       );
@@ -268,6 +293,8 @@ function App() {
               setCarToEditClicked(car);
               setPageValue("admin-newCar");
             }}
+            url={url}
+            bearerToken={bearerToken}
           />
         </>
       );
@@ -288,6 +315,8 @@ function App() {
             carSelected={carToEditClicked}
             onSaveBtnPressed={() => newFetchCars()}
             OnReturn={() => {setCarClicked(); setPageValue("admin")}}
+            siteURL={url}
+            bearerToken={bearerToken}
           />
         </>
       );
@@ -307,6 +336,8 @@ function App() {
           <NewCarPage     
             onSaveBtnPressed={() => newFetchCars()}
             OnReturn={() => {setCarClicked(); setPageValue("admin")}}
+            siteURL={url}
+            bearerToken={bearerToken}
           />
         </>
       );

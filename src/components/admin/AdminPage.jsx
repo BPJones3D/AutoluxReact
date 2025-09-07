@@ -7,7 +7,7 @@ function alertUser(str) {
 }
 
 
-function NavMenu({adminFetchCars, onCarEditClicked, onCarPreviewClicked, onNewCarClicked})
+function NavMenu({adminFetchCars, onCarEditClicked, onCarPreviewClicked, onNewCarClicked, url, bearerToken})
 {
     const newCar = {
     "id": "1",
@@ -45,6 +45,8 @@ function NavMenu({adminFetchCars, onCarEditClicked, onCarPreviewClicked, onNewCa
                         car={car} 
                         onEditBtnClicked={() => onCarEditClicked(car)} 
                         onPreviewBtnClicked={() => onCarPreviewClicked(car)}
+                        url={url}
+                        bearerToken={bearerToken}
                     />
                 ))}
             </div>

@@ -8,11 +8,15 @@ function alertUser(str) {
   alert(str)
 }
 
-const deleteCar = async (carToDelete) => {
+const deleteCar = async (carToDelete, url, bearerToken) => {
+    var bearer = "Bearer " + bearerToken
+
     try {
-        const response = await fetch(`https://localhost:44357/api/car`, {
+        const response = await fetch(url + "api/car", {
         method: "DELETE",
+        withCredentials: true,
         headers: {
+            "Authorization": bearer,
             "Content-Type": "application/json",
         },
         body: JSON.stringify(carToDelete),
@@ -30,7 +34,7 @@ const deleteCar = async (carToDelete) => {
     }
 };
 
-function AdminCarTile({car, onEditBtnClicked, onPreviewBtnClicked}){
+function AdminCarTile({car, onEditBtnClicked, onPreviewBtnClicked, url, bearerToken}){
     return(
         <div className="tile-body">
             
@@ -93,7 +97,7 @@ function AdminCarTile({car, onEditBtnClicked, onPreviewBtnClicked}){
 
                     </div>
                     <div className="buttons">
-                        <button onClick={() => deleteCar(car)}>
+                        <button onClick={() => deleteCar(car, url, bearerToken)}>
                             <img src={'./symbols/icon_delete_1.png'} alt="delete"></img>
                         </button>
                         <button onClick={() => onPreviewBtnClicked(car)}>

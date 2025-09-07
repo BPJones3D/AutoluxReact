@@ -1,8 +1,10 @@
 import './EditNewCarPage-module.css';
 import { useState, setState, use } from 'react';
 
-function NewCarPage({onSaveBtnPressed, OnReturn}) {
-  
+function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
+  var url = siteURL;
+  var bearer = "Bearer " + bearerToken
+
   const carNew = {
     "brand": "New",
     "name": "Car",
@@ -25,10 +27,12 @@ function NewCarPage({onSaveBtnPressed, OnReturn}) {
 
   const postCar = async (carToPost) => {
       try {
-          const response = await fetch(`https://localhost:44357/api/car`, {
+          const response = await fetch(url + "api/car", {
           method: "POST",
+          withCredentials: true,
           headers: {
-              "Content-Type": "application/json",
+            'Authorization': bearer,
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(carToSend),
           });
