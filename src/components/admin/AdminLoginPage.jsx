@@ -1,7 +1,7 @@
 import './AdminLoginPage-module.css';
 import { useState, setState, use } from 'react';
 
-function AdminLoginPage({onLoginBypass, onLoginAttempt, url, recievedBearerToken}){
+function AdminLoginPage({url, recievedBearerToken}){
 
 // post to {url + /api/Authentication} with the username and password
 // recieve the {token} and set it as {recievedBearerToken}
@@ -56,11 +56,6 @@ function AdminLoginPage({onLoginBypass, onLoginAttempt, url, recievedBearerToken
                 id="admin-login-button"
                 onClick={()=> postCredentials()}>
                 Sign in
-            </button>
-            <button 
-                id="bypass"
-                onClick={() => onLoginBypass()}>
-                Bypass
             </button>
        </div> 
     );

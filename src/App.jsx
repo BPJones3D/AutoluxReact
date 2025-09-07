@@ -250,11 +250,6 @@ function App() {
             />
           </div>
           <AdminLoginPage 
-            onLoginBypass={() => {
-              setIsLoggedIn(true)
-              setCarClicked(); 
-              setPageValue("admin")
-            }}
             onLoginAttempt={() => {}}
             url={url}
             recievedBearerToken={ (token) =>{
