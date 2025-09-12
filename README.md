@@ -4,16 +4,12 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
 
 # Current Features
 - Cars for sale list
-- API Pagination and ordering
 - Individual car page details
-- Admin Pages:
-  - Browse Cars
-  - Edit Car
-  - Delete Car
-  - Add Car
-- User Authorisation/Security
+- API pagination and ordering
+- Admin page with CRUD functionality
+- User Authorisation/security
   - Admin login page
-  - Token requirements from backend for Create, Update, and Delete requests
+  - Token requirements from backend for CRUD requests
     
 # High Prio Todo
 - Filtering through API
@@ -32,7 +28,7 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
   - brand (checklist)
 
 # Backlog Todo
-- Delete "Are you sure?" Button
+- Add an "are you sure?" button when deleting a car
 - Admin search
 - Basic home page
 - Basic about page
