@@ -30,7 +30,7 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
 # Backlog Todo
 - Add an "are you sure?" button when deleting a car
 - Admin search
-- Manager's mage for editing login accounts
+- Manager's page for editing login accounts
 - Basic home page
 - Basic about page
 - Basic contact page
