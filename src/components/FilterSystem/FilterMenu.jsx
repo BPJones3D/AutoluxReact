@@ -76,11 +76,15 @@ function FilterMenu({
           { value: 'Miles', label: 'Miles' },
           { value: 'MPG', label: 'MPG' },
           { value: 'Brand', label: 'Brand'},
-          { value: 'Doors', label: 'Doors'}
+          { value: 'Doors', label: 'Doors'},
+          { value: 'Seats', label: 'Seats'},
+          { value: 'TankCapacity', label: 'Tank Capacity'},
+          { value: 'EVRange', label: 'EV Range'},
         ]}/>
         
       </div>
-
+      <br></br>
+      <h3 className="filter-title">Currently under rework:</h3>
       <FilterSearchBar label="SEARCH BY NAME" onChange={searchNameChange}/>
 
       <div className="double-filter-container">

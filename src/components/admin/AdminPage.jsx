@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use, useState, useEffect } from "react";
 import AdminCarTile from './AdminCarTile';
 
 
@@ -7,8 +7,38 @@ function alertUser(str) {
 }
 
 
-function NavMenu({adminFetchCars, onCarEditClicked, onCarPreviewClicked, onNewCarClicked, url, bearerToken})
+function NavMenu({onCarEditClicked, onCarPreviewClicked, onNewCarClicked, url, bearerToken})
 {
+    const [fetchedCars, setFetchedCars] = useState([]);
+    const [carQuantity, setCarQuantity] = useState();
+
+    var page = 1 // add FRONT END for this later
+    var pageSize = 100 // add FRONT END for this later
+
+    const newFetchCars = async () => { //fetches the cars for that exact page
+        const newfetchedCars = await 
+        fetch(url + "api/car?page=" + page + "&pageSize=" + pageSize, 
+            {
+            method: 'GET',
+            })
+        .then(response => response.json());
+        setFetchedCars(newfetchedCars)
+
+        const newCarQuantity = await //fetches the quantity of cars in the database
+        fetch(url + "api/Car/car-quantity", 
+            {
+            method: 'GET',
+            })
+        .then(response => response.json());
+        setCarQuantity(newCarQuantity)
+    }
+    
+
+    useEffect(() => { // resets the filters when the page changes
+        newFetchCars();
+    });
+
+
     const newCar = {
     "id": "1",
     "brand": "New Brand",
@@ -31,7 +61,7 @@ function NavMenu({adminFetchCars, onCarEditClicked, onCarPreviewClicked, onNewCa
             <div className="text-white text-center pt-5">
                 <h2 className="pb-0 mb-0">ADMIN PANEL</h2>
                 <div className="container info-panel">
-                    <i><p className="text-info">Showing {adminFetchCars.length}/{adminFetchCars.length} Cars</p></i>
+                    <i><p className="text-info">Showing {fetchedCars.length} / {carQuantity} Cars</p></i>
                     <button className="add-new-car-btn" onClick={() => {console.log(newCar); onNewCarClicked()}}>
                         <p>+ Add New Car</p>
                     </button>
@@ -40,7 +70,7 @@ function NavMenu({adminFetchCars, onCarEditClicked, onCarPreviewClicked, onNewCa
 
 
             <div className="container tile-container">
-                {adminFetchCars.map(car => (
+                {fetchedCars.map(car => (
                     <AdminCarTile 
                         car={car} 
                         onEditBtnClicked={() => onCarEditClicked(car)} 

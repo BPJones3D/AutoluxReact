@@ -52,8 +52,6 @@ function App() {
     setFetchedCars(newfetchedCars)
   }
 
-  console.log("token: " + bearerToken)
-
   const [sortByValue, setSortByValue] = useState("Relevancy");
   const [orderValue, setOrderValue] = useState(true);
   const [searchValue, setSearchNameValue] = useState("");
@@ -139,7 +137,6 @@ function App() {
     case 'cars':
       return (
       <>
-      {console.log(sortByValue)}
         <div className="header">
           <Banner/>
           <NavMenu
@@ -189,7 +186,7 @@ function App() {
             onBrandChange={brandChange}
           />
           <CarList
-            fetchedCarList={fetchedCars}
+            //fetchedCarList={fetchedCars}
             sortByValue={sortByValue}
             orderValue={orderValue}
             searchValue={searchValue}
@@ -214,6 +211,7 @@ function App() {
             brandValue={brandValue}
             onCarClicked={carClickChange}
             setSortByValue={setSortByValue}
+            url={url}
           />
         </div>
       </>);
@@ -278,7 +276,7 @@ function App() {
             />
           </div>
           <AdminPage
-            adminFetchCars={fetchedCars}
+            //adminFetchCars={fetchedCars}
             onCarEditClicked={(car) => {
               setCarToEditClicked(car);
               setPageValue("admin-edit");

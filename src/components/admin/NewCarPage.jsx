@@ -6,7 +6,7 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
   var bearer = "Bearer " + bearerToken
 
   const carNew = {
-    "brand": "New",
+    "brand": "Test",
     "name": "Car",
     "year": 2020,
     "price": 9999,
@@ -18,12 +18,26 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
     "seatCount": 9,
     "doorCount": 9,
     "colour": "Red",
-    "description": ""
+    "description": "Test Car Description"
 }
 
   const [carToSend, setCarToSend] = useState(carNew);
 
   const updateCarToSend = (newCarDetails) => {setCarToSend(newCarDetails)};
+
+  const [brandValue, setBrandValue] = useState(carNew.brand);
+  const [modelValue, setModelValue] = useState(carNew.name);
+  const [yearValue, setYearValue] = useState(carNew.year);
+  const [priceValue, setPriceValue] = useState(carNew.price);
+  const [seatValue, setSeatValue] = useState(carNew.seatCount);
+  const [DoorValue, setDoorValue] = useState(carNew.doorCount);
+  const [milesValue, setMilesValue] = useState(carNew.miles);
+  const [colourValue, setColourValue] = useState(carNew.colour);
+  const [transmissionValue, setTransmissionValue] = useState(carNew.transmission);
+  const [fuelTypeValue, setFuelTypeValue] = useState(carNew.fuelType);
+  const [tankCapValue, setTankCapValue] = useState(carNew.tankCapacity);
+  const [mpgValue, setMPGValue] = useState(carNew.milesPerGallon);
+  const [descriptionValue, setDescriptionValue] = useState(carNew.description);
 
   const postCar = async (carToPost) => {
       try {
@@ -83,10 +97,12 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
               <input 
                 type="text" 
                 className="edit-car-details-input" 
-                placeholder={"brand"} 
+                placeholder={"brand"}
+                value={brandValue} 
                 onChange={(e) => {
+                  setBrandValue(e.target.value)
                   const newValue = e.target.value;
-                  updateCarToSend({ ...carToSend, brand: newValue})
+                  updateCarToSend({ ...carToSend, name: newValue})   
                 }}
               />
             </div>
@@ -97,7 +113,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"model"} 
+                value={modelValue} 
                 onChange={(e) => {
+                  setModelValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, name: newValue})
                 }}
@@ -110,7 +128,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"year"} 
+                value={yearValue}
                 onChange={(e) => {
+                  setYearValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, year: newValue})
                 }}
@@ -123,7 +143,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"price"} 
+                value={priceValue}
                 onChange={(e) => {
+                  setPriceValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, price: newValue})
                 }}
@@ -140,7 +162,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"0"} 
+                value={seatValue}
                 onChange={(e) => {
+                  setSeatValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, seatCount: newValue})
                 }}
@@ -153,7 +177,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"0"} 
+                value={DoorValue}
                 onChange={(e) => {
+                  setDoorValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, doorCount: newValue})
                 }}
@@ -168,7 +194,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"0"} 
+                value={milesValue}
                 onChange={(e) => {
+                  setMilesValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, miles: newValue})
                 }}
@@ -181,7 +209,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"colour"} 
+                value={colourValue}
                 onChange={(e) => {
+                  setColourValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, colour: newValue})
                 }}
@@ -196,7 +226,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"transmission"} 
+                value={transmissionValue}
                 onChange={(e) => {
+                  setTransmissionValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, transmission: newValue})
                 }}
@@ -209,7 +241,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"fuel type"} 
+                value={fuelTypeValue}
                 onChange={(e) => {
+                  setFuelTypeValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, fuelType: newValue})
                 }}
@@ -224,7 +258,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"0.0"} 
+                value={tankCapValue}
                 onChange={(e) => {
+                  setTankCapValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, tankCapacity: newValue})
                 }}
@@ -237,7 +273,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"0.0"} 
+                value={mpgValue}
                 onChange={(e) => {
+                  setMPGValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, milesPerGallon: newValue})
                 }}
@@ -251,7 +289,9 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
                 type="text" 
                 className="edit-car-details-input" 
                 placeholder={"Description..."}
+                value={descriptionValue}
                 onChange={(e) => {
+                  setDescriptionValue(e.target.value)
                   const newValue = e.target.value;
                   updateCarToSend({ ...carToSend, description: newValue})
                 }}

@@ -1,10 +1,23 @@
 # AutoluxReact
 This is the _**front-end**_ side of Autolux, an online car dealership website.
+    Find the _**back-end**_ [here](https://github.com/BPJones3D/Autolux)
 
 # Current Features
 - Cars for sale list
+- API Pagination and ordering
+- Individual car page details
+- Admin Pages:
+  - Browse Cars
+  - Edit Car
+  - Delete Car
+  - Add Car
+- User Authorisation/Security
+  - Admin login page
+  - Token requirements from backend for Create, Update, and Delete requests
+    
+# High Prio Todo
+- Filtering through API
 - Filters:
-  - sort by (select/dropdown) with order button (ascending/descending) 
   - search by name (text input)
   - transmission (checklist)
   - fuel type (checklist)
@@ -17,24 +30,18 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
   - seats (double slider)
   - doors (double slider)
   - brand (checklist)
-- Individual car page details
-- Admin Pages:
-  - Browse Cars
-  - Edit Car
-  - Delete Car
-  - Add Car
-- User Authorisation/Security
-  - Admin login page
-  - Token requirements from backend for Create, Update, and Delete requests
-    
-# Low Prio Todo
-- Search paging
+
+# Backlog Todo
+- Delete "Are you sure?" Button
+- Admin search
 - Basic home page
 - Basic about page
 - Basic contact page
 - Car list view modes (list / tiles / minimal)
 
-# Known issues
+# Known bugs/issues
+- Admin panel button doesn't highlight when active
+- Admin logout occurs when deleting a car
 - Clients may access the admin page without a token, this should automatically redirect to the home page
 - The "return" button on preview page doesn't return to the admin page
 - Creating a car takes the user to the default page, this should be either the admin car list
