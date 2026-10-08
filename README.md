@@ -5,31 +5,20 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
 # Current Features
 - Cars for sale list
 - Individual car page details
-- API pagination and ordering
+- API pagination, filtering, and ordering
 - Admin page with CRUD functionality
 - User Authorisation/security
   - Admin login page
   - Token requirements from backend for CRUD requests
     
 # High Prio Todo
-- Filtering through API
-- Filters:
-  - search by name (text input)
-  - transmission (checklist)
-  - fuel type (checklist)
-  - year (double slider)
-  - price (double slider)
-  - miles (double slider)
-  - mpg (double slider)
-  - tank capacity (double slider)
-  - ev range (double slider)
-  - seats (double slider)
-  - doors (double slider)
-  - brand (checklist)
+- Add paging buttons and functionality
+  - car list page
+  - admin page
 
 # Backlog Todo
 - Add an "are you sure?" button when deleting a car
-- Admin search
+- Admin filtering
 - Manager's page for editing login accounts
 - Basic home page
 - Basic about page
@@ -38,7 +27,6 @@ This is the _**front-end**_ side of Autolux, an online car dealership website.
 
 # Known bugs/issues
 - Admin panel button doesn't highlight when active
-- Admin logout occurs when deleting a car
 - Clients may access the admin page without a token, this should automatically redirect to the home page
 - The "return" button on preview page doesn't return to the admin page
 - Creating a car takes the user to the default page, this should be either the admin car list

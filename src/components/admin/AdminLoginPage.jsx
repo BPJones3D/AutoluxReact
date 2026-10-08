@@ -12,7 +12,6 @@ function AdminLoginPage({url, recievedBearerToken}){
     //{"username":"admin@tsest.com","password":"admin@tsest.com"}
 
     const postCredentials = async () => {
-        console.log(usernameValue)
         try {
             const response = await fetch(url+"api/Authentication", {
             method: "POST",
@@ -28,9 +27,6 @@ function AdminLoginPage({url, recievedBearerToken}){
             }
             const result = await response.json();
             recievedBearerToken(result["token"])
-            
-            console.log("Token:", result["token"]);
-            //window.location.reload();
         } catch (error) {
             //alertUser("CAR POST FAILED - Something went wrong...");
             console.error("Error posting car:", error);

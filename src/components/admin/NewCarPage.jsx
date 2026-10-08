@@ -25,19 +25,34 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
 
   const updateCarToSend = (newCarDetails) => {setCarToSend(newCarDetails)};
 
-  const [brandValue, setBrandValue] = useState(carNew.brand);
-  const [modelValue, setModelValue] = useState(carNew.name);
-  const [yearValue, setYearValue] = useState(carNew.year);
-  const [priceValue, setPriceValue] = useState(carNew.price);
-  const [seatValue, setSeatValue] = useState(carNew.seatCount);
-  const [DoorValue, setDoorValue] = useState(carNew.doorCount);
-  const [milesValue, setMilesValue] = useState(carNew.miles);
-  const [colourValue, setColourValue] = useState(carNew.colour);
-  const [transmissionValue, setTransmissionValue] = useState(carNew.transmission);
-  const [fuelTypeValue, setFuelTypeValue] = useState(carNew.fuelType);
-  const [tankCapValue, setTankCapValue] = useState(carNew.tankCapacity);
-  const [mpgValue, setMPGValue] = useState(carNew.milesPerGallon);
-  const [descriptionValue, setDescriptionValue] = useState(carNew.description);
+    // EMPTY TO ENCOURAGE USER TO FILL IN DETAILS -- FOR DEFAULT VALUE, USE carNew.[variable_name]
+  const [brandValue, setBrandValue] = useState();
+  const [modelValue, setModelValue] = useState();
+  const [yearValue, setYearValue] = useState();
+  const [priceValue, setPriceValue] = useState();
+  const [seatValue, setSeatValue] = useState();
+  const [DoorValue, setDoorValue] = useState();
+  const [milesValue, setMilesValue] = useState();
+  const [colourValue, setColourValue] = useState();
+  const [transmissionValue, setTransmissionValue] = useState();
+  const [fuelTypeValue, setFuelTypeValue] = useState();
+  const [tankCapValue, setTankCapValue] = useState();
+  const [mpgValue, setMPGValue] = useState();
+  const [descriptionValue, setDescriptionValue] = useState(); 
+
+  // const [brandValue, setBrandValue] = useState(carNew.brand);
+  // const [modelValue, setModelValue] = useState(carNew.name);
+  // const [yearValue, setYearValue] = useState(carNew.year);
+  // const [priceValue, setPriceValue] = useState(carNew.price);
+  // const [seatValue, setSeatValue] = useState(carNew.seatCount);
+  // const [DoorValue, setDoorValue] = useState(carNew.doorCount);
+  // const [milesValue, setMilesValue] = useState(carNew.miles);
+  // const [colourValue, setColourValue] = useState(carNew.colour);
+  // const [transmissionValue, setTransmissionValue] = useState(carNew.transmission);
+  // const [fuelTypeValue, setFuelTypeValue] = useState(carNew.fuelType);
+  // const [tankCapValue, setTankCapValue] = useState(carNew.tankCapacity);
+  // const [mpgValue, setMPGValue] = useState(carNew.milesPerGallon);
+  // const [descriptionValue, setDescriptionValue] = useState(carNew.description);
 
   const postCar = async (carToPost) => {
       try {
@@ -65,7 +80,7 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
   };
 
 
-  return (
+  return ( 
     <div className="container edit-car-container">
       
       <div className="edit-car-page">
@@ -288,7 +303,7 @@ function NewCarPage({onSaveBtnPressed, OnReturn, siteURL, bearerToken}) {
             <textarea 
                 type="text" 
                 className="edit-car-details-input" 
-                placeholder={"Description..."}
+                placeholder={"description..."}
                 value={descriptionValue}
                 onChange={(e) => {
                   setDescriptionValue(e.target.value)

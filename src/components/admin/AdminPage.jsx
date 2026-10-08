@@ -39,22 +39,7 @@ function NavMenu({onCarEditClicked, onCarPreviewClicked, onNewCarClicked, url, b
     });
 
 
-    const newCar = {
-    "id": "1",
-    "brand": "New Brand",
-    "name": "New Name",
-    "year": 2020,
-    "price": 99999,
-    "miles": 99999,
-    "transmission": "Manual",
-    "fuelType": "Petrol",
-    "tankCapacity": 99,
-    "milesPerGallon": 99.9,
-    "seatCount": "9",
-    "doorCount": 9,
-    "colour": "Red",
-    "description": "Just a test car."
-}
+
 
     return (
         <div>
@@ -62,7 +47,7 @@ function NavMenu({onCarEditClicked, onCarPreviewClicked, onNewCarClicked, url, b
                 <h2 className="pb-0 mb-0">ADMIN PANEL</h2>
                 <div className="container info-panel">
                     <i><p className="text-info">Showing {fetchedCars.length} / {carQuantity} Cars</p></i>
-                    <button className="add-new-car-btn" onClick={() => {console.log(newCar); onNewCarClicked()}}>
+                    <button className="add-new-car-btn" onClick={() => {onNewCarClicked()}}>
                         <p>+ Add New Car</p>
                     </button>
                 </div>

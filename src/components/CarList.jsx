@@ -25,7 +25,7 @@ function CarList({
     const [carQuantity, setCarQuantity] = useState();
 
     var page = 1 // add FRONT END for this later
-    var pageSize = 5 // add FRONT END for this later
+    var pageSize = 500 // add FRONT END for this later -- THIS CONTROLS HOW MANY CARS ARE SHOWN ON THE PAGE, CURRENTLY SET TO 500 FOR TESTING PURPOSES
     
     if(orderValue == true)
     {
@@ -36,14 +36,52 @@ function CarList({
     
 
     const newFetchCars = async () => { //fetches the cars for that exact page
+
+        var filter_string_fuelType = "";
+        var filter_string_transmission = "";
+        var filter_string_brand = "";
+
+        fuelTypeValue.forEach(function(value, index, array){
+            filter_string_fuelType += "&fuelType=" + value["type"];
+        })
+
+        transmissionValue.forEach(function(value, index, array){
+            filter_string_transmission += "&transmission=" + value["type"];
+        })
+        
+        brandValue.forEach(function(value, index, array){
+            filter_string_brand += "&brand=" + value["type"];
+        })
+
         const newfetchedCars = await //"api/Car?filter=Price&page=1&pageSize=1"
         fetch(
                 url 
-                + "api/Car" 
-                + "?filter=" + sortByValue 
-                + "&filterOrder=" + filterOrder 
-                + "&page=" + page 
-                + "&pageSize=" + pageSize, 
+                + "api/Car?" 
+                + filter_string_fuelType
+                + filter_string_transmission
+                + filter_string_brand
+                + "&page=" + page
+                + "&pageSize=" + pageSize
+                + "&filter=" + sortByValue 
+                + "&filterOrder=" + filterOrder
+                + "&search_value=" + searchValue
+                + "&year_min=" + yearMinValue
+                + "&year_max=" + yearMaxValue
+                + "&price_min=" + priceMinValue
+                + "&price_max=" + priceMaxValue
+                + "&miles_min=" + milesMinValue
+                + "&miles_max=" + milesMaxValue
+                + "&mpg_min=" + mpgMinValue
+                + "&mpg_max=" + mpgMaxValue
+                + "&tankCapacity_min=" + tankCapacityMinValue
+                + "&tankCapacity_max=" + tankCapacityMaxValue
+                + "&evRange_min=" + evRangeMinValue
+                + "&evRange_max=" + evRangeMaxValue
+                + "&seatCount_min=" + seatsMinValue
+                + "&seatCount_max=" + seatsMaxValue
+                + "&doorCount_min=" + doorsMinValue
+                + "&doorCount_max=" + doorsMaxValue
+                ,
             {
             method: 'GET',
             })
@@ -62,99 +100,24 @@ function CarList({
     useEffect(() => { // resets the filters when the page changes
         newFetchCars();
     }, [sortByValue,
-        orderValue
+        orderValue,
+        searchValue,
+        yearMinValue, yearMaxValue,
+        priceMinValue, priceMaxValue,
+        milesMinValue, milesMaxValue,
+        mpgMinValue, mpgMaxValue,
+        tankCapacityMinValue, tankCapacityMaxValue,
+        evRangeMinValue, evRangeMaxValue,
+        seatsMinValue, seatsMaxValue,
+        doorsMinValue, doorsMaxValue,
+        fuelTypeValue,
+        transmissionValue,
+        brandValue,
+        fuelTypeValue,
+        transmissionValue,
+        brandValue
     ]);
 
-
-
-    // if (yearMinValue > yearMaxValue){
-    //     const oldMin = yearMinValue; const oldMax = yearMaxValue
-    //     yearMinValue = oldMax; yearMaxValue = oldMin
-    // }
-    // if (priceMinValue > priceMaxValue){
-    //     const oldMin = priceMinValue; const oldMax = priceMaxValue
-    //     priceMinValue = oldMax; priceMaxValue = oldMin
-    // }
-    // if (milesMinValue > milesMaxValue){
-    //     const oldMin = milesMinValue; const oldMax = milesMaxValue
-    //     milesMinValue = oldMax; milesMaxValue = oldMin
-    // }
-    // if (mpgMinValue > mpgMaxValue){
-    //     const oldMin = mpgMinValue; const oldMax = mpgMaxValue
-    //     mpgMinValue = oldMax; mpgMaxValue = oldMin
-    // }    
-    // if (tankCapacityMinValue > tankCapacityMaxValue){
-    //     const oldMin = tankCapacityMinValue; const oldMax = tankCapacityMaxValue
-    //     tankCapacityMinValue = oldMax; tankCapacityMaxValue = oldMin
-    // }
-    // if (evRangeMinValue > evRangeMaxValue){
-    //     const oldMin = evRangeMinValue; const oldMax = evRangeMaxValue
-    //     evRangeMinValue = oldMax; evRangeMaxValue = oldMin
-    // }  
-    // if (seatsMinValue > seatsMaxValue){
-    //     const oldMin = seatsMinValue; const oldMax = seatsMaxValue
-    //     seatsMinValue = oldMax; seatsMaxValue = oldMin
-    // }
-    // if (doorsMinValue > doorsMaxValue){
-    //     const oldMin = doorsMinValue; const oldMax = doorsMaxValue
-    //     doorsMinValue = oldMax; doorsMaxValue = oldMin
-    // } 
-
-    // const filteredCars = fetchedCars.filter(
-    //     (car) => 
-    //         (searchValue.length === 0 || (car.brand + " " + car.name).toLowerCase().includes(searchValue.toLowerCase())) &&
-    //         car.year >= yearMinValue && car.year <= yearMaxValue &&
-    //         car.price >= priceMinValue && car.price <= priceMaxValue &&
-    //         car.miles >= milesMinValue && car.miles <= milesMaxValue &&
-    //         car.milesPerGallon >= mpgMinValue && car.milesPerGallon <= mpgMaxValue &&
-    //         (car.transmission === "EV" 
-    //             ? car.tankCapacity >= evRangeMinValue && car.tankCapacity <= evRangeMaxValue
-    //             : car.tankCapacity >= tankCapacityMinValue && car.tankCapacity <= tankCapacityMaxValue)&&
-    //         car.seatCount >= seatsMinValue && car.seatCount <= seatsMaxValue &&
-    //         car.doorCount >= doorsMinValue && car.doorCount <= doorsMaxValue &&
-    //         (fuelTypeValue.length === 0 || fuelTypeValue.some(option => option.type === car.fuelType))&&
-    //         (transmissionValue.length === 0 || transmissionValue.some(option => option.type === car.transmission))&&
-    //         (brandValue.length === 0 || brandValue.some(option => option.type === car.brand))
-    // );
-
-// const sortedCars = filteredCars.slice().sort((a, b) => {
-//     let field;
-//     switch (sortByValue) {
-//         case "Relevancy":
-//             field = "id";
-//             break;
-//         case "Price":
-//             field = "price";
-//             break;
-//         case "Year":
-//             field = "year";
-//             break;
-//         case "Miles":
-//             field = "miles";
-//             break;
-//         case "MPG":
-//             field = "milesPerGallon";
-//             break;
-//         case "Brand":
-//             field = "brand";
-//             break;
-//         case "Doors":
-//             field = "doorCount";
-//             break;
-//         default:
-//             field = "id"; // sort by name in default case
-//             break;
-//     }
-//     if (typeof a[field] === "string") {
-//         return orderValue
-//             ? a[field].localeCompare(b[field])
-//             : b[field].localeCompare(a[field]);
-//     } else {
-//         return orderValue
-//             ? b[field] - a[field]
-//             : a[field] - b[field];
-//     }
-// });
     return (
         <div className="forSale-container">
             <div className="text-white text-center pt-5 pb-2">

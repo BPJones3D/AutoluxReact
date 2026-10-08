@@ -27,7 +27,6 @@ const deleteCar = async (carToDelete, url, bearerToken) => {
         }
 
         console.log("Deleted car:", carToDelete);
-        window.location.reload();
     } catch (error) {
         alertUser("CAR DELETION FAILED - Something went wrong...");
         console.error("Error deleting car:", error, carToDelete);

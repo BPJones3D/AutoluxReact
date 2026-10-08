@@ -83,8 +83,6 @@ function FilterMenu({
         ]}/>
         
       </div>
-      <br></br>
-      <h3 className="filter-title">Currently under rework:</h3>
       <FilterSearchBar label="SEARCH BY NAME" onChange={searchNameChange}/>
 
       <div className="double-filter-container">
