@@ -11,8 +11,8 @@ import NewCarPage from './components/admin/NewCarPage';
 import AdminLoginPage from './components/admin/AdminLoginPage';
 
 
-const url = "https://localhost:44357/";
-//const url = "https://autolux-ajfke6epa8aahda3.westus3-01.azurewebsites.net/";
+//const url = "https://localhost:44357/";
+const url = "https://autolux-ajfke6epa8aahda3.westus3-01.azurewebsites.net/";
 //const url = "https://localhost:44357/";
 
 /* 
